@@ -1,0 +1,136 @@
+{
+    "futuremenu": [{
+            "holder": "郑州商品交易所",
+            "data": [{
+                    "name": "PTA",
+                    "urlCode": "TA0"
+                },
+                {
+                    "name": "菜油",
+                    "urlCode": "OI0"
+                },
+                {
+                    "name": "菜籽",
+                    "urlCode": "RS0"
+                },
+                {
+                    "name": "菜粕",
+                    "urlCode": "RM0"
+                },
+                {
+                    "name": "动力煤",
+                    "urlCode": "ZC0"
+                },
+                {
+                    "name": "强麦",
+                    "urlCode": "WH0"
+                },
+                {
+                    "name": "粳稻",
+                    "urlCode": "JR0"
+                }
+            ]
+        },
+        {
+            "holder": "大连商品交易所",
+            "data": [{
+                    "name": "PVC",
+                    "urlCode": "V0"
+                },
+                {
+                    "name": "棕榈",
+                    "urlCode": "P0"
+                },
+                {
+                    "name": "豆二",
+                    "urlCode": "B0"
+                },
+                {
+                    "name": "豆粕",
+                    "urlCode": "M0"
+                },
+                {
+                    "name": "铁矿石",
+                    "urlCode": "I0"
+                },
+                {
+                    "name": "鸡蛋",
+                    "urlCode": "JD0"
+                },
+                {
+                    "name": "塑料",
+                    "urlCode": "L0"
+                }
+            ]
+        },
+        {
+            "holder": "上海期货交易所",
+            "data": [{
+                    "name": "燃油",
+                    "urlCode": "FU0"
+                },
+                {
+                    "name": "原油",
+                    "urlCode": "SC0"
+                },
+                {
+                    "name": "沪铝",
+                    "urlCode": "AL0"
+                },
+                {
+                    "name": "橡胶",
+                    "urlCode": "RU0"
+                },
+                {
+                    "name": "沪锌",
+                    "urlCode": "ZN0"
+                },
+                {
+                    "name": "沪铜",
+                    "urlCode": "CU0"
+                },
+                {
+                    "name": "黄金",
+                    "urlCode": "AU0"
+                }
+            ]
+        },
+        {
+            "holder": "其他",
+            "data": [{
+                    "name": "伦敦金",
+                    "urlCode": "XAU"
+                },
+                {
+                    "name": "WTI纽约原油",
+                    "urlCode": "CL"
+                },
+                {
+                    "name": "富时中国A50指数",
+                    "urlCode": "CHA50CF"
+                }
+            ]
+        },
+        {
+            "holder": "外汇",
+            "data": [{
+                    "name": "美元人民币",
+                    "urlCode": "USDCNY"
+                },
+                {
+                    "name": "人民币日元",
+                    "urlCode": "CNYJPY"
+                },
+                {
+                    "name": "欧元人民币",
+                    "urlCode": "EURCNY"
+                },
+                {
+                    "name": "美元指数",
+                    "urlCode": "DINIW"
+                }
+            ]
+        }
+
+    ]
+}

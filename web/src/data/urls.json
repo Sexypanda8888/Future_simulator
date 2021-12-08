@@ -1,0 +1,31 @@
+{
+    "data": [{
+            "intro": "国内期货日K数据，在最后加上编号，如https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var/InnerFuturesNewService.getDailyKLine?symbol=TA0",
+            "url": "https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var/InnerFuturesNewService.getMinLine?symbol="
+        },
+        {
+            "intro": "国内期货分时数据，在最后加上编号，如https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var/InnerFuturesNewService.getMinLine?symbol=TA0",
+            "url": "https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var/InnerFuturesNewService.getMinLine?symbol="
+        },
+        {
+            "intro": "国际期货日K数据，在最后加上编号，如伦敦金https://stock2.finance.sina.com.cn/futures/api/openapi.php/GlobalFuturesService.getGlobalFuturesDailyKLine?symbol=XAU",
+            "url": "https://stock2.finance.sina.com.cn/futures/api/openapi.php/GlobalFuturesService.getGlobalFuturesMinLine?symbol="
+        },
+        {
+            "intro": "国际期货分时数据，在最后加上编号，如伦敦金https://stock2.finance.sina.com.cn/futures/api/openapi.php/GlobalFuturesService.getGlobalFuturesMinLine?symbol=XAU",
+            "url": "https://stock2.finance.sina.com.cn/futures/api/openapi.php/GlobalFuturesService.getGlobalFuturesMinLine?symbol="
+        },
+        {
+            "intro": "外汇日K数据，在symbol处加编号，如https://vip.stock.finance.sina.com.cn/forex/api/jsonp.php/var/NewForexService.getDayKLine?_=2021_12_6&symbol=usdcny",
+            "url": "https://vip.stock.finance.sina.com.cn/forex/api/jsonp.php/var/NewForexService.getOldMinKline?scale=1&datalen=240&symbol="
+        },
+        {
+            "intro": "外汇分时数据，在symbol处加编号，如https://vip.stock.finance.sina.com.cn/forex/api/jsonp.php/var/NewForexService.getOldMinKline?scale=1&datalen=240&symbol=DINIW",
+            "url": "https://vip.stock.finance.sina.com.cn/forex/api/jsonp.php/var/NewForexService.getOldMinKline?scale=1&datalen=240&symbol="
+        }
+    ],
+    "smallData":{
+        "intro":"比较简单,后面跟编号,逗号相隔",
+        "url":"http://hq.sinajs.cn/list="
+    }
+}
