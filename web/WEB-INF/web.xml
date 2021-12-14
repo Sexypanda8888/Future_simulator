@@ -24,6 +24,15 @@
         <url-pattern>/registersubmit</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>futureData</servlet-name>
+        <servlet-class>datas.futureData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>futureData</servlet-name>
+        <url-pattern>/future_data</url-pattern>
+    </servlet-mapping>
+
     <!--    <servlet>-->
     <!--        <servlet-name>login</servlet-name>-->
     <!--        <servlet-class>login.register</servlet-class>-->

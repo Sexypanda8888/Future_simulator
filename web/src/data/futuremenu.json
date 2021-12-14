@@ -3,31 +3,31 @@
             "holder": "郑州商品交易所",
             "data": [{
                     "name": "PTA",
-                    "urlCode": "TA0"
+                    "urlCode": "nf_TA0"
                 },
                 {
                     "name": "菜油",
-                    "urlCode": "OI0"
+                    "urlCode": "nf_OI0"
                 },
                 {
                     "name": "菜籽",
-                    "urlCode": "RS0"
+                    "urlCode": "nf_RS0"
                 },
                 {
                     "name": "菜粕",
-                    "urlCode": "RM0"
+                    "urlCode": "nf_RM0"
                 },
                 {
                     "name": "动力煤",
-                    "urlCode": "ZC0"
+                    "urlCode": "nf_ZC0"
                 },
                 {
                     "name": "强麦",
-                    "urlCode": "WH0"
+                    "urlCode": "nf_WH0"
                 },
                 {
                     "name": "粳稻",
-                    "urlCode": "JR0"
+                    "urlCode": "nf_JR0"
                 }
             ]
         },
@@ -35,31 +35,31 @@
             "holder": "大连商品交易所",
             "data": [{
                     "name": "PVC",
-                    "urlCode": "V0"
+                    "urlCode": "nf_V0"
                 },
                 {
                     "name": "棕榈",
-                    "urlCode": "P0"
+                    "urlCode": "nf_P0"
                 },
                 {
                     "name": "豆二",
-                    "urlCode": "B0"
+                    "urlCode": "nf_B0"
                 },
                 {
                     "name": "豆粕",
-                    "urlCode": "M0"
+                    "urlCode": "nf_M0"
                 },
                 {
                     "name": "铁矿石",
-                    "urlCode": "I0"
+                    "urlCode": "nf_I0"
                 },
                 {
                     "name": "鸡蛋",
-                    "urlCode": "JD0"
+                    "urlCode": "nf_JD0"
                 },
                 {
                     "name": "塑料",
-                    "urlCode": "L0"
+                    "urlCode": "nf_L0"
                 }
             ]
         },
@@ -67,31 +67,31 @@
             "holder": "上海期货交易所",
             "data": [{
                     "name": "燃油",
-                    "urlCode": "FU0"
+                    "urlCode": "nf_FU0"
                 },
                 {
                     "name": "原油",
-                    "urlCode": "SC0"
+                    "urlCode": "nf_SC0"
                 },
                 {
                     "name": "沪铝",
-                    "urlCode": "AL0"
+                    "urlCode": "nf_AL0"
                 },
                 {
                     "name": "橡胶",
-                    "urlCode": "RU0"
+                    "urlCode": "nf_RU0"
                 },
                 {
                     "name": "沪锌",
-                    "urlCode": "ZN0"
+                    "urlCode": "nf_ZN0"
                 },
                 {
                     "name": "沪铜",
-                    "urlCode": "CU0"
+                    "urlCode": "nf_CU0"
                 },
                 {
                     "name": "黄金",
-                    "urlCode": "AU0"
+                    "urlCode": "nf_AU0"
                 }
             ]
         },
@@ -99,15 +99,11 @@
             "holder": "其他",
             "data": [{
                     "name": "伦敦金",
-                    "urlCode": "XAU"
+                    "urlCode": "hf_XAU"
                 },
                 {
-                    "name": "WTI纽约原油",
-                    "urlCode": "CL"
-                },
-                {
-                    "name": "富时中国A50指数",
-                    "urlCode": "CHA50CF"
+                    "name": "伦敦银",
+                    "urlCode": "hf_XAG"
                 }
             ]
         },
