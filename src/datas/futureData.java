@@ -41,19 +41,22 @@ public class futureData extends HttpServlet {
     }
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("运行到servlet");
-        request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
+//        request.setCharacterEncoding("gb18030");
+//        response.setCharacterEncoding("gbk");
+        response.setHeader("Content-Type","application/javascript; charset=utf-8");
         String url = request.getParameter("url");
         url=java.net.URLDecoder.decode(url,"utf-8");
         System.out.println("将要发送的url为"+url);
 //直接输入要访问的地址，它只是一个用来访问的
 
         String s=HttpRequest.sendGet(url,"");
-        String ss = new String(s.getBytes("ISO-8859-1"),"UTF-8");
-        String sss = new String(s.getBytes("ISO-8859-1"),"UTF-8");
-        System.out.println(sss);
-//        response.setContentType("text/plain; charset=UTF-8");
-        response.getWriter().print(sss);
+        System.out.println(s);
+//        EncodingUtil a =new EncodingUtil();
+
+//        String b=a.convertEncoding_Str(s,"GB18030","utf-8");
+//        String ss=new String(s.getBytes("utf-8"),"GBK");
+//        System.out.println(ss);
+        response.getWriter().print(s);
         response.getWriter().flush();
         response.getWriter().close();
         /*----------------------------------------返回给前端 结束----------------------------------------*/
