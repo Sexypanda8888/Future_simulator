@@ -22,6 +22,10 @@
         {
             "intro": "外汇分时数据，在symbol处加编号，如https://vip.stock.finance.sina.com.cn/forex/api/jsonp.php/var/NewForexService.getOldMinKline?scale=1&datalen=240&symbol=DINIW",
             "url": "https://vip.stock.finance.sina.com.cn/forex/api/jsonp.php/var/NewForexService.getOldMinKline?scale=1&datalen=240&symbol="
+        },
+        {
+            "intro":"http://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData?page=1&num=15&sort=changepercent&asc=0&node=sh_a&symbol=",
+            "url":"http://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData?page=1&num=15&sort=changepercent&asc=0&node=sh_a&symbol="
         }
     ],
     "smallData":{

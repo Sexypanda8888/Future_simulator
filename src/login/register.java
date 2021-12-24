@@ -84,8 +84,8 @@ public class register extends HttpServlet {
             session.setAttribute("user", user);
             session.setAttribute("loginTime", dateTime);
             session.setAttribute("sessionId", session.getId());
-            //请求转发
-            request.getRequestDispatcher("src/test_session.jsp").forward(request, response);
+
+            response.sendRedirect("src/homepage.html");
         }else
         {
             System.out.println("登录失败");
@@ -119,6 +119,16 @@ public class register extends HttpServlet {
         conn.executeUpdate(sql);
         conn.close();
         System.out.println("操作数据完毕，关闭了数据库！");
+        System.out.println(user_name + "--" + password);
+
+        db conn2 = new db();
+
+        String sql2 = "insert into user_money(user_name, money) values('" + user_name + "', '0')";
+        System.out.println(sql2);
+        conn2.executeUpdate(sql2);
+        conn2.close();
+        System.out.println("操作数据完毕，关闭了数据库！");
+
         response.sendRedirect("src/pages-login.html");
     }
 
@@ -136,7 +146,7 @@ public class register extends HttpServlet {
         ResultSet rs = conn.executeQuery(sql);
         if (rs.next()) {
             System.out.println("登录成功"+user_name);
-            response.sendRedirect("src/starter-kit.html");
+            response.sendRedirect("src/homepage.html");
         }else
         {
             System.out.println("登录失败");

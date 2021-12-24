@@ -33,6 +33,86 @@
         <url-pattern>/future_data</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>stockData</servlet-name>
+        <servlet-class>datas.stock.financeData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>stockData</servlet-name>
+        <url-pattern>/stock_data</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+    <servlet-name>money</servlet-name>
+    <servlet-class>money.money</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>money</servlet-name>
+        <url-pattern>/money</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>business</servlet-name>
+        <servlet-class>business.business</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>business</servlet-name>
+        <url-pattern>/business</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ask_question</servlet-name>
+        <servlet-class>ask_question.ask_question</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ask_question</servlet-name>
+        <url-pattern>/ask_question</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>user_data</servlet-name>
+        <servlet-class>user.userData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>user_data</servlet-name>
+        <url-pattern>/user_data</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>news</servlet-name>
+        <servlet-class>news.news</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>news</servlet-name>
+        <url-pattern>/news</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>robot</servlet-name>
+        <servlet-class>robot.robot</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>robot</servlet-name>
+        <url-pattern>/robot</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>trade_history</servlet-name>
+        <servlet-class>trade_history.trade_history</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>trade_history</servlet-name>
+        <url-pattern>/trade_history</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>holding</servlet-name>
+        <servlet-class>holding.holding</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>holding</servlet-name>
+        <url-pattern>/holding</url-pattern>
+    </servlet-mapping>
     <!--    <servlet>-->
     <!--        <servlet-name>login</servlet-name>-->
     <!--        <servlet-class>login.register</servlet-class>-->

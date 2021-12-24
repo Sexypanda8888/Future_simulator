@@ -3258,7 +3258,7 @@ table.dataTable thead .sorting_asc_disabled,
 table.dataTable thead .sorting_desc_disabled {
   background: transparent; }
 
-table.dataTable thead .sorting_asc:after {
+/* table.dataTable thead .sorting_asc:after {
   content: "\f0de";
   margin-left: 10px;
   font-family: fontawesome;
@@ -3275,7 +3275,7 @@ table.dataTable thead .sorting:after {
   margin-left: 10px;
   font-family: fontawesome !important;
   cursor: pointer;
-  color: rgba(50, 50, 50, 0.5); }
+  color: rgba(50, 50, 50, 0.5); } */
 
 .dataTables_wrapper .dataTables_paginate {
   float: right;

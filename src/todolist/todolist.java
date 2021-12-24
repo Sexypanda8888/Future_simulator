@@ -1,6 +1,7 @@
 package todolist;
 
 import db.db;
+import login.user;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
@@ -31,11 +33,18 @@ public class todolist extends HttpServlet {
         doPost(request, response);
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("运行到servlet");
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+        user user = (login.user)session.getAttribute("user");
+        if (user==null){
+            response.sendRedirect("src/pages-login.html");
+            System.out.println("going to return!!!!!!!!");
+            return;
+        }
         if(action.equals("getuserlist")){
             try{
                 getuserlist(request,response);
@@ -48,9 +57,15 @@ public class todolist extends HttpServlet {
             }catch (Exception ex){
                 ex.printStackTrace();
             }
-        }else if(action.equals("delete_things")){
+        }else if(action.equals("modify_things")){
             try{
                 modify_things(request,response);
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }else if(action.equals("add_todo_things")){
+            try{
+                add_todo_things(request,response);
             }catch (Exception ex){
                 ex.printStackTrace();
             }
@@ -65,7 +80,14 @@ public class todolist extends HttpServlet {
         List jsonList=new ArrayList();
         JSONArray arr =new JSONArray();
         JSONObject jsonObj = new JSONObject();
-        String sql="select * from todo_list";
+        HttpSession session = request.getSession();
+        user user = (login.user)session.getAttribute("user");
+        if (user==null){
+            response.sendRedirect("src/pages-login.html");
+            System.out.println("going to return!!!!!!!!");
+            return;
+        }
+        String sql="select * from todo_list where todo_user='"+user.getUsername()+"'";
         System.out.println("SQL语句是："+ sql + "<br>");
         ResultSet rs = conn.executeQuery(sql);
         try{
@@ -121,11 +143,32 @@ public class todolist extends HttpServlet {
         String todo_things=request.getParameter("todo_things");
         String creatime=request.getParameter("creatime");
         db conn=new db();
-        String sql="UPDATE todo_list SET todo_things='"+todo_things+"',creatime='"+creatime+"'WHERE id='"+modify_id;
+        String sql="UPDATE todo_list SET todo_things='"+todo_things+"',creatime='"+creatime+"'WHERE id='"+modify_id+"'";
         System.out.println(sql);
         conn.executeUpdate(sql);
         conn.close();
         System.out.println("操作数据完毕，关闭了数据库！");
 
+    }
+
+    public void add_todo_things(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        System.out.println("运行到servle：add_todo_things");
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        String todo_things=request.getParameter("add_todo_things");
+        String creatime=request.getParameter("add_creatime");
+        HttpSession session = request.getSession();
+        user user = (login.user)session.getAttribute("user");
+        if (user==null){
+            response.sendRedirect("src/pages-login.html");
+            System.out.println("going to return!!!!!!!!");
+            return;
+        }
+        db conn=new db();
+        String sql="INSERT todo_list (todo_things,creatime,todo_user) values( '"+todo_things+"','"+creatime+"','"+user.getUsername()+"')";
+        System.out.println(sql);
+        conn.executeUpdate(sql);
+        conn.close();
+        System.out.println("操作数据完毕，关闭了数据库！");
     }
 }

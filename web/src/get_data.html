@@ -57,7 +57,7 @@ for(i in codes){
                     r1=/"(.*?),.*?,(.*?),(.*?),(.*?),(.*?),.*?,(.*?),/g;
                     var m=r1.exec(r[j]);
 
-                    temp.push([m[1],rateCul(m[6],m[5]),m[6],m[5],m[2],m[3],m[4]]);
+                    temp.push([{"name":m[1],"code":codes[i][j]["urlCode"]},rateCul(m[6],m[5]),m[6],m[5],m[2],m[3],m[4]]);
                 }
 
                 //名字，涨跌，最新价格，昨日收盘，今开，最高，最低
@@ -97,7 +97,7 @@ $.ajax({
                     r1=/"(.*?),(.*?),.*?,.*?,(.*?),(.*?),.*?,.*?,(.*?),.*?,.*?,.*?,.*?,(.*?)[",]/gm;
                     var m=r1.exec(r[j]);
 
-                    temp.push([m[6],rateCul(m[1],m[2]),m[1],m[2],m[5],m[3],m[4]]);
+                    temp.push([{"name":m[6],"code":codes[3][j]["urlCode"]},rateCul(m[1],m[2]),m[1],m[2],m[5],m[3],m[4]]);
                 }
                 var r=r1.exec(data);
                 //名字，涨跌，最新价格，昨日收盘，今开，最高，最低
@@ -128,7 +128,7 @@ $.ajax({
                 for (j in r){
                     r1=/".*?,(.*?),.*?,(.*?),.*?,(.*?),(.*?),(.*?),.*?,(.*?),/gm;
                     var m=r1.exec(r[j]);
-                    temp.push([m[6],rateCul(m[1],m[2]),m[1],m[2],m[3],m[4],m[5]]);
+                    temp.push([{"name":m[6],"code":codes[4][j]["urlCode"]},rateCul(m[1],m[2]),m[1],m[2],m[3],m[4],m[5]]);
                 }
                 currency_data=temp
             }

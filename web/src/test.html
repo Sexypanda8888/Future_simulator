@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-<!--    <link rel="stylesheet" href="../layui/css/layui.css">-->
-<!--    <script src="../layui/layui.all.js"></script>-->
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script src="../layui/layui.all.js"></script>
     <script src="../assets/plugins/jquery/jquery.min.js"></script>
     <!-- Favicon icon -->
     <link rel="stylesheet" href="">
@@ -439,41 +439,9 @@
                         <li class="nav-devider"></li>
                         <li class="nav-small-cap">EXTRA COMPONENTS</li>
                         <li class="two-column">
-                            <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Pages</span></a>
+                            <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">专家答疑</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="starter-kit.html">Starter Kit</a></li>
-                                <li><a href="pages-profile.html">Profile page</a></li>
-                                <li><a href="pages-animation.html">Animation</a></li>
-                                <li><a href="pages-fix-innersidebar.html">Sticky Left sidebar</a></li>
-                                <li><a href="pages-fix-inner-right-sidebar.html">Sticky Right sidebar</a></li>
-                                <li><a href="pages-invoice.html">Invoice</a></li>
-                                <li><a href="pages-treeview.html">Treeview</a></li>
-                                <li><a href="pages-utility-classes.html">Helper Classes</a></li>
-                                <li><a href="pages-search-result.html">Search result</a></li>
-                                <li><a href="pages-scroll.html">Scrollbar</a></li>
-                                <li><a href="pages-pricing.html">Pricing</a></li>
-                                <li><a href="pages-lightbox-popup.html">Lighbox popup</a></li>
-                                <li><a href="pages-gallery.html">Gallery</a></li>
-                                <li><a href="pages-faq.html">Faqs</a></li>
-                                <li><a href="#" class="has-arrow">Error Pages</a>
-                                    <ul aria-expanded="false" class="collapse">
-                                        <li><a href="pages-error-400.html">400</a></li>
-                                        <li><a href="pages-error-403.html">403</a></li>
-                                        <li><a href="pages-error-404.html">404</a></li>
-                                        <li><a href="pages-error-500.html">500</a></li>
-                                        <li><a href="pages-error-503.html">503</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#" class="has-arrow">Authentication <span class="label label-rounded label-success">6</span></a>
-                                    <ul aria-expanded="false" class="collapse">
-                                        <li><a href="pages-login.html">Login 1</a></li>
-                                        <li><a href="pages-login-2.html">Login 2</a></li>
-                                        <li><a href="pages-register.html">Register</a></li>
-                                        <li><a href="pages-register2.html">Register 2</a></li>
-                                        <li><a href="pages-lockscreen.html">Lockscreen</a></li>
-                                        <li><a href="pages-recover-password.html">Recover password</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="ask_question.html">专家答疑</a></li>
                             </ul>
                         </li>
                         <li>
@@ -579,14 +547,17 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="home7" role="tabpanel" aria-expanded="true">
+                                        <div>
+                                            <button data-toggle="modal" data-target="#modal"  type="button" class="btn btn-outline-secondary btn-rounded">
+                                                添加</button>
+                                        </div>
                                         <table id="example" class="display" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                
                                                     <th>待办事项</th>
                                                     <th>期限时间</th>
                                                     <th>
-                                                        sad
+                                                        操作
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -615,6 +586,39 @@
             <!-- End footer -->
             <!-- ============================================================== -->
         </div>
+                <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">添加待办事项</h4>
+                            </div>
+                            <div class="modal-body">
+                                待办事项:<input type="text" id="add_todo_things" name="add_todo_things" /><br>
+                                期限时间:<input type="datetime-local" id="add_creatime" name="add_creatime" />
+                                <button id="add_todothings" name="add_todothings" onclick="add_list_things()">确定添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" tabindex="-1" role="dialog" id="modify_modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="ModalLabel">修改待办事项</h4>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" id="page_id" name="page_id" value="device_add"/>
+                                待办id:<input id="todo_id" name="todo_id" class="m-0">禁止修改此行!!!!<br>
+                                待办事项：<input id="todo_things" name="todo_things"><br>
+                                创建时间：<input type="datetime-local"  id="creatime" name="creatime"><br>
+                                <button id="todolist_modify" name="todolist_modify" onclick="todo_things_modify()">确定修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
@@ -671,12 +675,11 @@
             'copy', 'excel', 'pdf'
             ],
             "columns": [
-                
                 { "data": "todo_things" },
                 { "data": "creatime" },
                 {"data":null,"render":function(data,type,row,meta){
-                    var html='<button id="modify_list" onclick="datatable_jsonmodify('+data.id+')" type="button" class="btn btn-outline-secondary btn-rounded">修改 <i class="fa fa-heart"></i></button>' +
-                        '<button onclick="datatable_jsondelete('+data.id+')" type="button" class="btn btn-outline-secondary btn-rounded">删除 <i class="fa fa-heart"></i></button>'
+                    var html='<button data-toggle="modal" data-target="#modify_modal" data-whatever="'+data.id+'"   type="button" class="btn btn-outline-secondary btn-rounded"  >修改</button>'+
+                            '<button  onclick="datatable_jsondelete('+data.id+')"   type="button" class="btn btn-outline-secondary btn-rounded"  >删除</button>'
                     return html;
                 }},
             ]
@@ -684,6 +687,14 @@
     }
 
     );
+        function getParam(paramName) {
+            paramValue = "", isFound = !1;
+            if (this.location.search.indexOf("?") == 0 && this.location.search.indexOf("=") > 1) {
+                arrSource = unescape(this.location.search).substring(1, this.location.search.length).split("&"), i = 0;
+                while (i < arrSource.length && !isFound) arrSource[i].indexOf("=") > 0 && arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase() && (paramValue = arrSource[i].split("=")[1], isFound = !0), i++
+            }
+            return paramValue == "" && (paramValue = null), paramValue;
+        }
 
         function datatable_jsondelete(id){
             var delete_id=id;
@@ -693,27 +704,40 @@
             location.reload();
         }
 
-        function datatable_jsonmodify(id) {
-            var modify_id=id;
-            var url ="todolist_modify.html" ;
-            layui.open({
-                title:'待办事项修改',
-                type:2,
-                skin:'layui-layer-rim',
-                area:['40%','50%'],
-                content:"./todolist_modify.html?modify_id="+modify_id,
-                shadeClose:true,
-                success:function(layui,index){
+        // function datatable_jsonmodify(id) {
+        //     var modify_id=id;
+        //     window.location.href="./todolist_modify.html?id="+modify_id;
+        // }
 
-                }
-            });
-
-
+        function add_list_things(){
+            var todo_things=document.getElementById('add_todo_things').value;
+            var creatime=document.getElementById('add_creatime').value;
+            var url="/qihuo/todolist?action=add_todo_things&add_todo_things="+todo_things+"&add_creatime="+creatime;
+            $.post(url, function(){});
+            alert("修改成功");
+            window.location.href="./test.html";
         }
+
+        function todo_things_modify(){
+            var id=document.getElementById('todo_id').value;
+            var todo_things=document.getElementById('todo_things').value;
+            var creatime=document.getElementById('creatime').value;
+            var url="/qihuo/todolist?action=modify_things&id="+id+"&todo_things="+todo_things+"&creatime="+creatime;
+            $.post(url, function(){});
+            alert("修改成功");
+            window.location.href="./test.html";
+        }
+        $('#modify_modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // 触发事件的按钮
+            var recipient = button.data('whatever'); // 解析出whatever内容
+            var modal = $(this)  //获得模态框本身
+            modal.find('.modal-title').text( recipient) ; // 更改将title的text
+            modal.find('.m-0').val(recipient);
+        })
+
 
 
 
     </script>
-
 </body>
 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>天气查询</title>
+    <link rel="stylesheet" href="/XM17/assets/weather/weather.css?5443"/>
+    <link rel="icon" href="/XM17/assets/weather/favicon.ico"/>
+</head>
+<body>
+<header>
+    <h1>WEATHER</h1>
+    <div id="weather_search">
+        <span><input id="text" type="text" placeholder="请输入您要查询的城市" /></span>
+        <span><input id="btn" type="button" value=" 查询天气" /></span>
+        <span><input id="btn2" type="button" value=" 返回主界面" onclick="window.location.href='/XM17/home/index.jsp'" /></span>
+    </div>
+</header>
+<section>
+    <div id="today_container">
+        <div>
+            <img src="/XM17/assets/weather/1.png" alt="今日天气"/>
+        </div>
+        <div>
+            <div class="main_info"><span class="info">城市</span>|<span class="info">201X-XX-XX</span>|<span class="info">星期X</span>|<span class="info">---</span> </div>
+            <div class="more_info">今日温度：<span class="info">-----</span><span>℃</span>&nbsp&nbsp风力：<span class="info">-----</span>&nbsp风向：<span class="info">-----</span></div>
+        </div>
+    </div>
+    <div id="future_container">
+        <div class="future_box">
+            <img src="/XM17/assets/weather/1.png" alt="天气"/>
+            <span class="future_info">201X-XX-XX</span>
+            <span class="future_info">星期X</span>
+            <span class="future_info">--</span><span class="future_info">12-16℃</span>
+        </div>
+        <div class="future_box">
+            <img src="/XM17/assets/weather/3.png" alt="天气"/>
+            <span class="future_info">201X-XX-XX</span>
+            <span class="future_info">星期X</span>
+            <span class="future_info">--</span><span class="future_info">12-16℃</span>
+        </div>
+        <div class="future_box">
+            <img src="/XM17/assets/weather/2.png" alt="天气"/>
+            <span class="future_info">201X-XX-XX</span>
+            <span class="future_info">星期X</span>
+            <span class="future_info">--</span><span class="future_info">12-16℃</span>
+        </div>
+        <div class="future_box">
+            <img src="/XM17/assets/weather/4.png" alt="天气"/>
+            <span class="future_info">201X-XX-XX</span>
+            <span class="future_info">星期X</span>
+            <span class="future_info">--</span><span class="future_info">12-16℃</span>
+        </div>
+        <div class="future_box">
+            <img src="/XM17/assets/weather/5.png" alt="天气"/>
+            <span class="future_info">201X-XX-XX</span>
+            <span class="future_info">星期X</span>
+            <span class="future_info">-</span><span class="future_info">12-16℃</span>
+        </div>
+    </div>
+</section>
+<footer>
+    <div>XM-17</div>
+</footer>
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=32ce28edca8ac5443b5d8d0a9ff91d00&v=1.1&services=true" ></script>
+<script src="/XM17/assets/weather/index.js?13123"></script>
+</body>
+</html>
