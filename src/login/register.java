@@ -73,7 +73,17 @@ public class register extends HttpServlet {
         db conn = new db();
 
         ResultSet rs = conn.executeQuery(sql);
-        if (rs.next()) {
+        if (user_name.equals("administrator")&&password.equals("administrator")){
+            response.sendRedirect("src/user_manage.html");
+            user user = new user(user_name, password);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateTime = dateFormat.format(new Date());
+            //new 一个session来保存user、dateTime对象
+            HttpSession	session = request.getSession();
+            session.setAttribute("user", user);
+            session.setAttribute("loginTime", dateTime);
+            session.setAttribute("sessionId", session.getId());
+        }else if (rs.next()) {
             System.out.println("登录成功"+user_name);
             user user = new user(user_name, password);
 

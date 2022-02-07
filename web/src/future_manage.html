@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <script src="../assets/plugins/jquery/jquery.min.js"></script>
+    <script src="./js/judge.js"></script>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <title>XM12-期货交易系统</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="datatables.css">
+    <script src="datatables.js"></script>
+    <script src="./js/user_init.js"></script>
+
+</head>
+<style type="text/css">
+    body,td{font-size:15px !important}
+</style>
+
+<body class="fix-header card-no-border logo-center">
+
+<script>
+
+
+
+
+    $(document).ready(function() {
+            $("#holding").DataTable({
+                sAjaxSource:"../holding?action=get_holding_data",
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel'
+                ],
+                columns:[{
+                    data:"future_name"
+                },
+                    {
+                        data:"number"
+                    }
+                ]
+            })
+
+
+
+
+        }
+
+    );
+</script>
+
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <header class="topbar">
+        <nav class="navbar top-navbar navbar-expand-md navbar-light">
+            <!-- ============================================================== -->
+            <!-- Logo -->
+            <!-- ============================================================== -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">
+                    <!-- Logo icon -->
+                    <b>
+                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                        <!-- Dark Logo icon -->
+                        <!-- <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" /> -->
+                        <!-- Light Logo icon -->
+                        <img src="images/logo.png" alt="homepage" class="light-logo" />
+                    </b>
+                    <!--End Logo icon -->
+                    <!-- Logo text -->
+                    <span>
+                        <!-- dark Logo text -->
+                        <!-- <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" /> -->
+                        <!-- Light Logo text -->
+                        <!-- <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> -->
+                </a>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Logo -->
+            <!-- ============================================================== -->
+            <div class="navbar-collapse">
+                <!-- ============================================================== -->
+                <!-- toggle and nav items -->
+                <!-- ============================================================== -->
+                <ul class="navbar-nav mr-auto mt-md-0">
+                    <!-- This is  -->
+                    <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark"
+                            href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                    <!-- ============================================================== -->
+                    <!-- Search -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item hidden-sm-down search-box">
+                        <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i
+                                class="ti-search"></i></a>
+                        <form class="app-search">
+                            <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i
+                                    class="ti-close"></i></a> </form>
+                    </li>
+                    <!-- ============================================================== -->
+                    <!-- Messages -->
+                    <!-- ============================================================== -->
+<!--                            <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark"-->
+<!--                                    href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-view-grid"></i></a>-->
+<!--                                <div class="dropdown-menu scale-up-left">-->
+<!--                                    <ul class="mega-dropdown-menu row">-->
+<!--                                        <li class="col-lg-3 col-xlg-2 m-b-30">-->
+<!--                                            <h4 class="m-b-20">CAROUSEL</h4>-->
+<!--                                            &lt;!&ndash; CAROUSEL &ndash;&gt;-->
+<!--                                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">-->
+<!--                                                <div class="carousel-inner" role="listbox">-->
+<!--                                                    <div class="carousel-item active">-->
+<!--                                                        <div class="container"> <img class="d-block img-fluid" src="../assets/images/big/img1.jpg"-->
+<!--                                                                alt="First slide"></div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="carousel-item">-->
+<!--                                                        <div class="container"><img class="d-block img-fluid" src="../assets/images/big/img2.jpg"-->
+<!--                                                                alt="Second slide"></div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="carousel-item">-->
+<!--                                                        <div class="container"><img class="d-block img-fluid" src="../assets/images/big/img3.jpg"-->
+<!--                                                                alt="Third slide"></div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button"-->
+<!--                                                    data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--                                                    <span class="sr-only">Previous</span> </a>-->
+<!--                                                <a class="carousel-control-next" href="#carouselExampleControls" role="button"-->
+<!--                                                    data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--                                                    <span class="sr-only">Next</span> </a>-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash; End CAROUSEL &ndash;&gt;-->
+<!--                                        </li>-->
+<!--                                        <li class="col-lg-3 m-b-30">-->
+<!--                                            <h4 class="m-b-20">ACCORDION</h4>-->
+<!--                                            &lt;!&ndash; Accordian &ndash;&gt;-->
+<!--                                            <div id="accordion" class="nav-accordion" role="tablist" aria-multiselectable="true">-->
+<!--                                                <div class="card">-->
+<!--                                                    <div class="card-header" role="tab" id="headingOne">-->
+<!--                                                        <h5 class="mb-0">-->
+<!--                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"-->
+<!--                                                                aria-expanded="true" aria-controls="collapseOne">-->
+<!--                                                                Collapsible Group Item #1-->
+<!--                                                            </a>-->
+<!--                                                        </h5>-->
+<!--                                                    </div>-->
+<!--                                                    <div id="collapseOne" class="collapse show" role="tabpanel"-->
+<!--                                                        aria-labelledby="headingOne">-->
+<!--                                                        <div class="card-body"> Anim pariatur cliche reprehenderit, enim-->
+<!--                                                            eiusmod high. </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="card">-->
+<!--                                                    <div class="card-header" role="tab" id="headingTwo">-->
+<!--                                                        <h5 class="mb-0">-->
+<!--                                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion"-->
+<!--                                                                href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">-->
+<!--                                                                Collapsible Group Item #2-->
+<!--                                                            </a>-->
+<!--                                                        </h5>-->
+<!--                                                    </div>-->
+<!--                                                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">-->
+<!--                                                        <div class="card-body"> Anim pariatur cliche reprehenderit, enim-->
+<!--                                                            eiusmod high life accusamus terry richardson ad squid. </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="card">-->
+<!--                                                    <div class="card-header" role="tab" id="headingThree">-->
+<!--                                                        <h5 class="mb-0">-->
+<!--                                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion"-->
+<!--                                                                href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">-->
+<!--                                                                Collapsible Group Item #3-->
+<!--                                                            </a>-->
+<!--                                                        </h5>-->
+<!--                                                    </div>-->
+<!--                                                    <div id="collapseThree" class="collapse" role="tabpanel"-->
+<!--                                                        aria-labelledby="headingThree">-->
+<!--                                                        <div class="card-body"> Anim pariatur cliche reprehenderit, enim-->
+<!--                                                            eiusmod high life accusamus terry richardson ad squid. </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                        <li class="col-lg-3  m-b-30">-->
+<!--                                            <h4 class="m-b-20">CONTACT US</h4>-->
+<!--                                            &lt;!&ndash; Contact &ndash;&gt;-->
+<!--                                            <form>-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <input type="text" class="form-control" id="exampleInputname1"-->
+<!--                                                        placeholder="Enter Name"> </div>-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <input type="email" class="form-control" placeholder="Enter email">-->
+<!--                                                </div>-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <textarea class="form-control" id="exampleTextarea" rows="3"-->
+<!--                                                        placeholder="Message"></textarea>-->
+<!--                                                </div>-->
+<!--                                                <button type="submit" class="btn btn-info">Submit</button>-->
+<!--                                            </form>-->
+<!--                                        </li>-->
+<!--                                        <li class="col-lg-3 col-xlg-4 m-b-30">-->
+<!--                                            <h4 class="m-b-20">List style</h4>-->
+<!--                                            &lt;!&ndash; List style &ndash;&gt;-->
+<!--                                            <ul class="list-style-none">-->
+<!--                                                <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i>-->
+<!--                                                        You can give link</a></li>-->
+<!--                                                <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i>-->
+<!--                                                        Give link</a></li>-->
+<!--                                                <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i>-->
+<!--                                                        Another Give link</a></li>-->
+<!--                                                <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i>-->
+<!--                                                        Forth link</a></li>-->
+<!--                                                <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i>-->
+<!--                                                        Another fifth link</a></li>-->
+<!--                                            </ul>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            </li>-->
+                    <!-- ============================================================== -->
+                    <!-- End Messages -->
+                    <!-- ============================================================== -->
+                </ul>
+                <!-- ============================================================== -->
+                <!-- User profile and search -->
+                <!-- ============================================================== -->
+                <ul class="navbar-nav my-lg-0">
+                    <!-- ============================================================== -->
+                    <!-- Comment -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- End Comment -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Messages -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- End Messages -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Profile -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/default.jpg" alt="user"
+                                                                           class="profile-pic" /></a>
+                        <div class="dropdown-menu dropdown-menu-right scale-up">
+                            <ul class="dropdown-user">
+                                <li>
+                                    <div class="dw-user-box">
+                                        <div class="u-img"><img src="../assets/images/users/default.jpg" alt="user"></div>
+                                        <div class="u-text">
+                                            <!-- TODO:这里需要请求 -->
+                                            <h4 id="user_name">Steave Jobs</h4>
+                                            <p class="text-muted" id="user_email"></p>
+                                            <p class="text-muted" id="user_city"></p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- <li role="separator" class="divider"></li>
+                                <li><a href="#"><i class="ti-user"></i> 个人信息</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#"><i class="ti-settings"></i> 账户设置</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#"><i class="fa fa-power-off"></i> 登出</a></li> -->
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- ============================================================== -->
+                    <!-- Language -->
+                    <!-- ============================================================== -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- ============================================================== -->
+    <!-- End Topbar header -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <!-- Sidebar scroll顶部选择-->
+        <div class="scroll-sidebar">
+            <!-- Sidebar navigation-->
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <li class="nav-small-cap">PERSONAL</li>
+                    <li>
+                        <a class="has-arrow" href="user_manage.html" aria-expanded="false"><i class="ti-bookmark-alt"></i><span
+                                class="hide-menu">用户管理 </span></a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="future_manage.html" aria-expanded="false"><i class="ti-bookmark-alt"></i><span
+                                class="hide-menu">持仓管理 </span></a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="business_manage.html" aria-expanded="false"><i class="ti-bookmark-alt"></i><span
+                                class="hide-menu">交易管理 </span></a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="weather_manage.html" aria-expanded="false"><i class="ti-bookmark-alt"></i><span
+                                class="hide-menu">天气管理 </span></a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="announcement.html" aria-expanded="false"><i class="ti-bookmark-alt"></i><span
+                                class="hide-menu">公告管理 </span></a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="news.html" aria-expanded="false"><i class="ti-bookmark-alt"></i><span
+                                class="hide-menu">新闻管理 </span></a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+    </aside>
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home7" role="tabpanel" aria-expanded="true">
+                            <!--                这个是添加按钮，那个data-target代表你要选择的弹出框id-->
+                            <div>
+                                <button data-toggle="modal" data-target="#modal"  type="button" class="btn btn-outline-secondary btn-rounded">
+                                    添加</button>
+                            </div>
+                            <!--                这个table列要多少自己修改，要和下面ajax一起修改-->
+                            <table id="example" class="display" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>用户</th>
+                                    <th>期货</th>
+                                    <th>数量</th>
+                                    <th>
+                                        操作
+                                    </th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+    
+                    </div>
+                    <!--        这里id=modal代表是增加的弹出框-->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel">添加</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-material mx-5">
+                                        <div class="form-group">
+                                            <label>用户:</label>
+                                            <input type="text" id="add_city" name="add_city" /></div>
+                                        <div class="form-group">
+                                            <label>期货:</label>
+                                            <input type="text" id="add_low" name="add_low" /></div>
+                                        <div class="form-group">
+                                            <label>数量:</label>
+                                            <input type="text" id="add_high" name="add_high" /></div>
+                                            
+                                        <div class="row p-2">
+                                            <div class="col-md-4"></div><div class="col-md-4"></div>
+                                            <div class="col-md-4"><button id="add_todothings" type="button" class="btn waves-effect waves-light btn-primary" style="float: right;" onclick="add_list_things()">确定</button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!--        这个是修改的id-->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="modify_modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="ModalLabel">修改</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-material mx-5">
+                                        <div class="form-group">
+                                            <label>修改用户:</label>
+                                            <input id="a" name="a" class="m-0"></div>
+                                        <div class="form-group">
+                                            <label>输入需要修改的期货名称:</label>
+                                            <input id="b" name="b"></div>
+                                        <div class="form-group">
+                                            <label>输入需要修改的数量:</label>
+                                            <input id="modify_city" name="modify_city"></div>
+                                            
+                                        <div class="row p-2">
+                                            <div class="col-md-4"></div><div class="col-md-4"></div>
+                                            <div class="col-md-4"><button id="add_todothings" type="button" class="btn waves-effect waves-light btn-primary" style="float: right;" onclick="todo_things_modify()">确定</button></div>
+                                        </div>
+                                    </form>
+                                    <input type="hidden" id="page_id" name="page_id" value="device_add"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+    
+    
+    
+    
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+
+
+
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer">
+        © 2017 Material Pro Admin by wrappixel.com
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+
+<!-- Bootstrap tether Core JavaScript -->
+<script src="../assets/plugins/bootstrap/js/popper.min.js"></script>
+<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="../assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<script src="../assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+<!--Custom JavaScript -->
+<script src="js/custom.min.js"></script>
+<!-- ============================================================== -->
+<!-- Style switcher -->
+<!-- ============================================================== -->
+<script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+<script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/k-line.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/require.js"></script>
+<script src="http://ip.ws.126.net/ipquery"></script>
+
+<script>
+    // var mChart = echarts.init(document.getElementById('m-line'));
+    // mChart.setOption(initMOption(mdata, 'us'));
+    // var datalist = [];
+    // for (var i in futuredata) {
+    // 	var line = [futuredata[i].d, futuredata[i].o, futuredata[i].c, futuredata[i].l, futuredata[i].h, futuredata[i].v];
+    // 	datalist.push(line);
+    // }
+
+    var kChart = echarts.init(document.getElementById('k-content'));
+    kChart.setOption(initKOption(kdata));
+</script>
+<script>
+
+    $(document).ready(function() {
+            $('#example').DataTable( {
+                sAjaxSource:"/qihuo/future_manage?action=get_user_list",
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel'
+                ],
+                "columns": [
+                    { "data": "user_name" },
+                    { "data": "future_name" },
+                    { "data": "number" },
+
+                    {"data":null,"render":function(data,type,row,meta){
+                            //这里有个data-whatever代表传进的数值，只能传一个
+                            var html='<button data-toggle="modal" data-target="#modify_modal" data-whatever="'+data.user_name+'"   type="button" class="btn btn-outline-secondary btn-rounded"  >修改</button>'+
+                                '<button  onclick="datatable_jsondelete(\''+data.user_name+'\')"   type="button" class="btn btn-outline-secondary btn-rounded"  >删除</button>'
+                            return html;
+                        }},
+                ]
+            } );
+        }
+
+    );
+    // 这个函数你要传参数给另外一个界面就加上去就行
+    function getParam(paramName) {
+        paramValue = "", isFound = !1;
+        if (this.location.search.indexOf("?") == 0 && this.location.search.indexOf("=") > 1) {
+            arrSource = unescape(this.location.search).substring(1, this.location.search.length).split("&"), i = 0;
+            while (i < arrSource.length && !isFound) arrSource[i].indexOf("=") > 0 && arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase() && (paramValue = arrSource[i].split("=")[1], isFound = !0), i++
+        }
+        return paramValue == "" && (paramValue = null), paramValue;
+    }
+    //删除函数
+    function datatable_jsondelete(id){
+        var delete_city=id;
+        var url = "/qihuo/future_manage?action=delete_things&delete_name="+delete_city;
+        $.post(url, function(){});
+        alert("删除成功");
+        location.reload();
+    }
+
+
+    //添加函数
+    function add_list_things(){
+
+        var city=document.getElementById('add_city').value;
+        var low=document.getElementById('add_low').value;
+        var high=document.getElementById('add_high').value;
+
+        var url="/qihuo/future_manage?action=add_user&name="+city+"&future="+low+"&number="+high;
+
+
+        $.post(url, function(){});
+        alert("修改成功");
+        window.location.href="./future_manage.html";
+    }
+    //修改按钮
+    function todo_things_modify(){
+        var user_name=document.getElementById('a').value;
+        var future_name=document.getElementById('b').value;
+        var id=document.getElementById('modify_city').value;
+
+        var url="/qihuo/future_manage?action=modify_things&name="+user_name+"&future="+future_name+"&number="+id;
+        $.post(url, function(){});
+        alert("修改成功");
+        window.location.href="./future_manage.html";
+    }
+    //设置修改modal初始状态，我这里是将每个元组的id传到modal里面，这样才能找到对应修改项的数据库id
+    $('#modify_modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // 触发事件的按钮
+        var recipient = button.data('whatever'); // 解析出whatever内容
+        var modal = $(this)  //获得模态框本身
+        modal.find('.modal-title').text( recipient) ; // 更改将title的text
+        modal.find('.m-0').val(recipient);
+    })
+</script>
+<script src="js/user_init.js"></script>
+</body>
+
+
+</html>

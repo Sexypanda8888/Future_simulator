@@ -15,6 +15,36 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>announcement</servlet-name>
+        <servlet-class>announcement.announcement</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>announcement</servlet-name>
+        <url-pattern>/announcement</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>user_manage</servlet-name>
+        <servlet-class>user_manage.user_manage</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>user_manage</servlet-name>
+        <url-pattern>/user_manage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>weather</servlet-name>
+        <servlet-class>weather.weather</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>weather</servlet-name>
+        <url-pattern>/weather</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>registersubmit</servlet-name>
         <servlet-class>login.register</servlet-class>
     </servlet>
@@ -43,8 +73,8 @@
     </servlet-mapping>
 
     <servlet>
-    <servlet-name>money</servlet-name>
-    <servlet-class>money.money</servlet-class>
+        <servlet-name>money</servlet-name>
+        <servlet-class>money.money</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>money</servlet-name>
@@ -104,6 +134,25 @@
         <servlet-name>trade_history</servlet-name>
         <url-pattern>/trade_history</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>business_manage</servlet-name>
+        <servlet-class>business_manage.business_manage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>business_manage</servlet-name>
+        <url-pattern>/business_manage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>future_manage</servlet-name>
+        <servlet-class>future_manage.future_manage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>future_manage</servlet-name>
+        <url-pattern>/future_manage</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>holding</servlet-name>

@@ -94,17 +94,29 @@ public class robot  extends HttpServlet {
         String sql="INSERT into robot_strategy (robot_key,user_session,stock_code,strategy_code) values( '"+robot_key+"','"+JSESSIONID+"','"+code+"','interval_buy')";
         System.out.println("SQL语句是："+ sql + "<br>");
         conn.executeUpdate(sql);
-        String sql2="INSERT into interval_buy_strategy(robot_key,interval,transaction_amount) values( '"+robot_key+"',"+interval+","+volume+")";
-        System.out.println("SQL语句是："+ sql + "<br>");
-        conn.executeUpdate(sql2);
-        conn.close();
+        if (type.equals("2")) {
+            String sql2 = "INSERT into interval_buy_strategy(robot_key,interval,transaction_amount) values( '" + robot_key + "'," + interval + "," + volume + ")";
+            System.out.println("SQL语句是：" + sql + "<br>");
+            conn.executeUpdate(sql2);
+            conn.close();
+        }
+        if (type.equals("3")) {
+            String sql2 = "INSERT into interval_sell_strategy(robot_key,interval,transaction_amount) values( '" + robot_key + "'," + interval + "," + volume + ")";
+            System.out.println("SQL语句是：" + sql + "<br>");
+            conn.executeUpdate(sql2);
+            conn.close();
+        }
 
         if (type.equals("2")){
-            String command="python D:\\cmdtest.py -c "+code+" -it "+interval+" -st interval_buy -m "+volume+" -s "+JSESSIONID;
+            String command="python D:\\cmdtest.py -c "+code+" -it "+interval+" -st interval_buy -m "+volume+" -s "+JSESSIONID+" -t "+lasting_sec;
             Runtime.getRuntime().exec(command);
             System.out.println("-------------------------------------------"+command);
         }
-
+        if (type.equals("3")){
+            String command="python D:\\cmdtest.py -c "+code+" -it "+interval+" -st interval_sell -m "+volume+" -s "+JSESSIONID+" -t "+lasting_sec;
+            Runtime.getRuntime().exec(command);
+            System.out.println("-------------------------------------------"+command);
+        }
 
         jsonObj.put("data",arr);
         System.out.println(jsonObj.toString());
@@ -117,15 +129,15 @@ public class robot  extends HttpServlet {
 
 
     public void delete_things(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
-        System.out.println("运行到servle：delete_things");
-        request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
-        String delete_id = request.getParameter("delete_id");
-        db conn=new db();
-        String sql="DELETE FROM todo_list WHERE id='"+ delete_id + "'";
-        System.out.println(sql);
-        conn.executeUpdate(sql);
-        conn.close();
+            System.out.println("运行到servle：delete_things");
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+            String delete_id = request.getParameter("delete_id");
+            db conn=new db();
+            String sql="DELETE FROM todo_list WHERE id='"+ delete_id + "'";
+            System.out.println(sql);
+            conn.executeUpdate(sql);
+            conn.close();
         System.out.println("操作数据完毕，关闭了数据库！");
     }
 

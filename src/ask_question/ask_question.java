@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -63,6 +64,12 @@ public class ask_question extends HttpServlet {
         }else if(action.equals("do_answers")){
             try{
                 do_answers(request,response);
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+        } else if(action.equals("delete_answer")){
+            try{
+                delete_answer(request,response);
             }catch (Exception ex){
                 ex.printStackTrace();
             }
@@ -150,6 +157,7 @@ public class ask_question extends HttpServlet {
         System.out.println(sql);
         String rs2="";
         String question="";
+        String ask_user="";
 
         HttpSession session = request.getSession();
         user user = (login.user)session.getAttribute("user");
@@ -162,16 +170,30 @@ public class ask_question extends HttpServlet {
         while(rs.next()){
             rs2=rs.getString("answer");
             question=rs.getString("question");
+            ask_user=rs.getString("ask_user");
         }
 
         String sql2="";
         if(rs2.equals("This question is not answered")){
             sql2="UPDATE ask_question SET answer='"+answer+"',answer_user='"+user.getUsername()+"' WHERE id='"+id+"'";
         }else{
-            sql2="INSERT ask_question (question,answer,answer_user) values( '"+question+"','"+answer+"','"+user.getUsername()+"')";
+            sql2="INSERT ask_question (question,answer,answer_user,ask_user) values( '"+question+"','"+answer+"','"+user.getUsername()+"','"+ask_user+"')";
         }
         conn.executeUpdate(sql2);
         System.out.println(sql2);
+        conn.close();
+        System.out.println("操作数据完毕，关闭了数据库！");
+    }
+
+    public void delete_answer(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
+        System.out.println("运行到servle：delete_answer");
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        String delete_id = request.getParameter("delete_id");
+        db conn=new db();
+        String sql="DELETE FROM ask_question WHERE id='"+ delete_id + "'";
+        System.out.println(sql);
+        conn.executeUpdate(sql);
         conn.close();
         System.out.println("操作数据完毕，关闭了数据库！");
     }

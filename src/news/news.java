@@ -63,9 +63,9 @@ public class news  extends HttpServlet {
             }catch (Exception ex){
                 ex.printStackTrace();
             }
-        }else if(action.equals("add_todo_things")){
+        }else if(action.equals("add_news")){
             try{
-                add_todo_things(request,response);
+                add_news(request,response);
             }catch (Exception ex){
                 ex.printStackTrace();
             }
@@ -91,6 +91,7 @@ public class news  extends HttpServlet {
                 node.put("url",rs.getString("url"));
                 node2.put("date",rs.getString("date"));
                 node2.put("title",node);
+                node2.put("id",rs.getString("id"));
                 arr.put(node2);
 //                List list = new ArrayList();
 //                list.add(rs.getString("todo_things"));
@@ -118,12 +119,12 @@ public class news  extends HttpServlet {
     }
 
     public void delete_things(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException{
-        System.out.println("运行到servle：delete_things");
+        System.out.println("运行到news servlet：delete_things");
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
-        String delete_id = request.getParameter("delete_id");
+        String delete_id = request.getParameter("id");
         db conn=new db();
-        String sql="DELETE FROM todo_list WHERE id='"+ delete_id + "'";
+        String sql="DELETE FROM news WHERE id='"+ delete_id + "'";
         System.out.println(sql);
         conn.executeUpdate(sql);
         conn.close();
@@ -135,10 +136,11 @@ public class news  extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         String modify_id=request.getParameter("id");
-        String todo_things=request.getParameter("todo_things");
-        String creatime=request.getParameter("creatime");
+        String title=request.getParameter("title");
+        String url=request.getParameter("url");
+        String date=request.getParameter("date");
         db conn=new db();
-        String sql="UPDATE todo_list SET todo_things='"+todo_things+"',creatime='"+creatime+"'WHERE id='"+modify_id+"'";
+        String sql="UPDATE news SET title='"+title+"',url='"+url+"',date='"+date+"'WHERE id='"+modify_id+"'";
         System.out.println(sql);
         conn.executeUpdate(sql);
         conn.close();
@@ -146,12 +148,13 @@ public class news  extends HttpServlet {
 
     }
 
-    public void add_todo_things(HttpServletRequest request,HttpServletResponse response) throws IOException {
-        System.out.println("运行到servle：add_todo_things");
+    public void add_news(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        System.out.println("运行到servle：add_news");
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
-        String todo_things=request.getParameter("add_todo_things");
-        String creatime=request.getParameter("add_creatime");
+        String title=request.getParameter("title");
+        String url=request.getParameter("url");
+        String date=request.getParameter("date");
         HttpSession session = request.getSession();
         user user = (login.user)session.getAttribute("user");
         if (user==null){
@@ -160,7 +163,7 @@ public class news  extends HttpServlet {
             return;
         }
         db conn=new db();
-        String sql="INSERT todo_list (todo_things,creatime,todo_user) values( '"+todo_things+"','"+creatime+"','"+user.getUsername()+"')";
+        String sql="INSERT news (title,url,date) values( '"+title+"','"+url+"','"+date+"')";
         System.out.println(sql);
         conn.executeUpdate(sql);
         conn.close();

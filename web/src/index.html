@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XM12-期货交易系统数据统计</title>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script>
+        $(window).load(function(){
+            $(".loading").fadeOut()
+        })
+
+    </script>
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/map.css">
+</head>
+<body>
+<div class="loading">
+    <div class="loadbox"> <img src="picture/loading.gif"> 页面加载中... </div>
+</div>
+<div class="data">
+    <div class="data-title">
+        <div class="title-center ">驾驶舱页面</div>
+    </div>
+    <div class="data-content">
+        <div class="con-left fl">
+            <div class="left-top">
+                <div class="info boxstyle">
+                    <div class="title">实时统计</div>
+                    <div class="info-main">
+                        <ul>
+                            <li id="quantity"></li>
+                            <li id="notice"></li>
+                            <li id="todolist"></li>
+                            <li id="news"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="top-bottom boxstyle">
+                    <div class="title">股票分布</div>
+                    <div id="echarts_1" class="charts"></div>
+                </div>
+            </div>
+            <div class="left-bottom boxstyle">
+                <div class="title">用户持仓统计</div>
+                <div id="echarts_2" class="charts"></div>
+            </div>
+        </div>
+        <div class="con-center fl">
+            <div class="title">
+                <iframe width="455" scrolling="no" height="75" frameborder="0" allowtransparency="true"
+                        src="http://i.tianqi.com/index.php?c=code&amp;id=38&amp;icon=1&amp;num=2&amp;align=left"></iframe>
+                <br>
+                <span id="time"></span>  还剩<span id="demo1"></span>秒刷新
+            </div>
+            <div class="cen-top map" id="map"></div>
+            <div class="cen-bottom boxstyle">
+                <div class="title">公告数量统计</div>
+                <div id="echarts_3" class="charts"></div>
+            </div>
+        </div>
+        <div class="con-right fr">
+            <div class="right-top boxstyle">
+                <div class="title">用户持仓TOP5</div>
+                <div id="echarts_4" class="charts"></div>
+            </div>
+            <div class="right-center boxstyle">
+                <div class="title">待办统计</div>
+                <div id="echarts_5" class="charts"></div>
+            </div>
+            <div class="right-bottom boxstyle">
+                <div class="title">一周新闻统计</div>
+                <div id="echarts_6" class="charts"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function mytime(){
+        var a = new Date();
+        var b = a.toLocaleTimeString();
+        var c = a.toLocaleDateString();
+        document.getElementById("time").innerHTML = c+"&nbsp"+b;
+    }
+    setInterval(function() {mytime()},1000);
+
+
+
+
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/china.js"></script>
+<script src="js/echarts.js"></script>
+</html>

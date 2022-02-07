@@ -79,7 +79,7 @@ public class holding extends HttpServlet {
         user user = (login.user)session.getAttribute("user");
         if (user==null){
             response.setHeader("REDIRECT","REDIRECT");//告诉ajax要重定向
-            response.setHeader("PATH","src/pages-login.html");//ip为服务器ip地址，在此用ip代指
+            response.setHeader("PATH","pages-login.html");//ip为服务器ip地址，在此用ip代指
 //                System.out.println("going to return!!!!!!!!");
             return;
         }
