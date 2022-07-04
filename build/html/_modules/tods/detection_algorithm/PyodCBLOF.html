@@ -1,0 +1,545 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.06.21"/>
+        <title>tods.detection_algorithm.PyodCBLOF - TODS 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">TODS 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../../_static/tods_menu_logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">TODS 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PythonPathCheatSheet.html">Python Path Cheat Sheet</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tods.data_processing.html">tods.data_processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tods.timeseries_processing.html">tods.timeseries_processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tods.feature_analysis.html">tods.feature_analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tods.detection_algorithm.html">tods.detection_algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tods.reinforcement.html">tods.reinforcement</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for tods.detection_algorithm.PyodCBLOF</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+
+<span class="c1"># Custom import commands if any</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span>
+<span class="kn">from</span> <span class="nn">sklearn.exceptions</span> <span class="kn">import</span> <span class="n">NotFittedError</span>
+<span class="c1"># from numba import njit</span>
+<span class="kn">from</span> <span class="nn">pyod.utils.utility</span> <span class="kn">import</span> <span class="n">argmaxn</span>
+
+<span class="kn">from</span> <span class="nn">d3m.container.numpy</span> <span class="kn">import</span> <span class="n">ndarray</span> <span class="k">as</span> <span class="n">d3m_ndarray</span>
+<span class="kn">from</span> <span class="nn">d3m.container</span> <span class="kn">import</span> <span class="n">DataFrame</span> <span class="k">as</span> <span class="n">d3m_dataframe</span>
+<span class="kn">from</span> <span class="nn">d3m.metadata</span> <span class="kn">import</span> <span class="n">hyperparams</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">base</span> <span class="k">as</span> <span class="n">metadata_base</span>
+<span class="kn">from</span> <span class="nn">d3m</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">d3m.base</span> <span class="kn">import</span> <span class="n">utils</span> <span class="k">as</span> <span class="n">base_utils</span>
+<span class="kn">from</span> <span class="nn">d3m.exceptions</span> <span class="kn">import</span> <span class="n">PrimitiveNotFittedError</span>
+<span class="kn">from</span> <span class="nn">d3m.primitive_interfaces.base</span> <span class="kn">import</span> <span class="n">CallResult</span><span class="p">,</span> <span class="n">DockerContainer</span>
+
+<span class="c1"># from d3m.primitive_interfaces.supervised_learning import SupervisedLearnerPrimitiveBase</span>
+<span class="kn">from</span> <span class="nn">d3m.primitive_interfaces.unsupervised_learning</span> <span class="kn">import</span> <span class="n">UnsupervisedLearnerPrimitiveBase</span>
+<span class="kn">from</span> <span class="nn">d3m.primitive_interfaces.transformer</span> <span class="kn">import</span> <span class="n">TransformerPrimitiveBase</span>
+
+<span class="kn">from</span> <span class="nn">d3m.primitive_interfaces.base</span> <span class="kn">import</span> <span class="n">ProbabilisticCompositionalityMixin</span><span class="p">,</span> <span class="n">ContinueFitMixin</span>
+<span class="kn">from</span> <span class="nn">d3m</span> <span class="kn">import</span> <span class="n">exceptions</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="kn">from</span> <span class="nn">d3m</span> <span class="kn">import</span> <span class="n">container</span><span class="p">,</span> <span class="n">utils</span> <span class="k">as</span> <span class="n">d3m_utils</span>
+
+<span class="kn">from</span> <span class="nn">.UODBasePrimitive</span> <span class="kn">import</span> <span class="n">Params_ODBase</span><span class="p">,</span> <span class="n">Hyperparams_ODBase</span><span class="p">,</span> <span class="n">UnsupervisedOutlierDetectorBase</span>
+<span class="kn">from</span> <span class="nn">pyod.models.cblof</span> <span class="kn">import</span> <span class="n">CBLOF</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="c1"># from typing import Union</span>
+
+<span class="n">Inputs</span> <span class="o">=</span> <span class="n">d3m_dataframe</span>
+<span class="n">Outputs</span> <span class="o">=</span> <span class="n">d3m_dataframe</span>
+
+
+<span class="k">class</span> <span class="nc">Params</span><span class="p">(</span><span class="n">Params_ODBase</span><span class="p">):</span>
+    <span class="c1">######## Add more Attributes #######</span>
+
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Hyperparams</span><span class="p">(</span><span class="n">Hyperparams_ODBase</span><span class="p">):</span>
+    <span class="c1">######## Add more Hyperparamters #######</span>
+
+    <span class="n">n_clusters</span> <span class="o">=</span> <span class="n">hyperparams</span><span class="o">.</span><span class="n">Hyperparameter</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;The number of clusters to form as well as the number of centroids to generate.&#39;</span><span class="p">,</span>
+        <span class="n">semantic_types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://metadata.datadrivendiscovery.org/types/TuningParameter&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># clustering_estimator = hyperparams.Choice(</span>
+    <span class="c1">#     choices={</span>
+    <span class="c1">#         &#39;auto&#39;: hyperparams.Hyperparams.define(</span>
+    <span class="c1">#             configuration=OrderedDict({})</span>
+    <span class="c1">#         ),</span>
+    <span class="c1">#         &#39;full&#39;: hyperparams.Hyperparams.define(</span>
+    <span class="c1">#             configuration=OrderedDict({})</span>
+    <span class="c1">#         ),</span>
+    <span class="c1">#     },</span>
+    <span class="c1">#     default=&#39;auto&#39;,</span>
+    <span class="c1">#     description=&#39;The base clustering algorithm for performing data clustering. A valid clustering algorithm should be passed in. The estimator should have standard sklearn APIs, fit() and predict(). The estimator should have attributes ``labels_`` and ``cluster_centers_``.&#39;,</span>
+    <span class="c1">#     semantic_types=[&#39;https://metadata.datadrivendiscovery.org/types/TuningParameter&#39;]</span>
+    <span class="c1"># )</span>
+
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">hyperparams</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span>
+        <span class="n">lower</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">upper</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Coefficient for deciding small and large clusters. The ratio of the number of samples in large clusters to the number of samples in small clusters.&#39;</span><span class="p">,</span>
+        <span class="n">semantic_types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://metadata.datadrivendiscovery.org/types/TuningParameter&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">hyperparams</span><span class="o">.</span><span class="n">Hyperparameter</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Coefficient for deciding small and large clusters.&#39;</span><span class="p">,</span>
+        <span class="n">semantic_types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://metadata.datadrivendiscovery.org/types/TuningParameter&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">use_weights</span> <span class="o">=</span> <span class="n">hyperparams</span><span class="o">.</span><span class="n">UniformBool</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">semantic_types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://metadata.datadrivendiscovery.org/types/TuningParameter&#39;</span><span class="p">],</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If set to True, the size of clusters are used as weights in outlier score calculation.&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">check_estimator</span> <span class="o">=</span> <span class="n">hyperparams</span><span class="o">.</span><span class="n">UniformBool</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">semantic_types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://metadata.datadrivendiscovery.org/types/TuningParameter&#39;</span><span class="p">],</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If set to True, check whether the base estimator is consistent with sklearn standard.&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">random_state</span> <span class="o">=</span> <span class="n">hyperparams</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="kc">None</span><span class="p">]](</span>
+        <span class="n">configuration</span><span class="o">=</span><span class="n">OrderedDict</span><span class="p">(</span>
+            <span class="n">init</span><span class="o">=</span><span class="n">hyperparams</span><span class="o">.</span><span class="n">Hyperparameter</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span>
+                <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">ninit</span><span class="o">=</span><span class="n">hyperparams</span><span class="o">.</span><span class="n">Hyperparameter</span><span class="p">[</span><span class="kc">None</span><span class="p">](</span>
+                <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+        <span class="n">default</span><span class="o">=</span><span class="s1">&#39;ninit&#39;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;the seed used by the random number generator.&#39;</span><span class="p">,</span>
+        <span class="n">semantic_types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://metadata.datadrivendiscovery.org/types/ControlParameter&#39;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="CBLOFPrimitive"><a class="viewcode-back" href="../../../tods.detection_algorithm.html#tods.detection_algorithm.PyodCBLOF.CBLOFPrimitive">[docs]</a><span class="k">class</span> <span class="nc">CBLOFPrimitive</span><span class="p">(</span><span class="n">UnsupervisedOutlierDetectorBase</span><span class="p">[</span><span class="n">Inputs</span><span class="p">,</span> <span class="n">Outputs</span><span class="p">,</span> <span class="n">Params</span><span class="p">,</span> <span class="n">Hyperparams</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The CBLOF operator calculates the outlier score based on cluster-based</span>
+<span class="sd">    local outlier factor.</span>
+<span class="sd">    CBLOF takes as an input the data set and the cluster model that was</span>
+<span class="sd">    generated by a clustering algorithm. It classifies the clusters into small</span>
+<span class="sd">    clusters and large clusters using the parameters alpha and beta.</span>
+<span class="sd">    The anomaly score is then calculated based on the size of the cluster the</span>
+<span class="sd">    point belongs to as well as the distance to the nearest large cluster.</span>
+<span class="sd">    Use weighting for outlier factor based on the sizes of the clusters as</span>
+<span class="sd">    proposed in the original publication. Since this might lead to unexpected</span>
+<span class="sd">    behavior (outliers close to small clusters are not found), it is disabled</span>
+<span class="sd">    by default.Outliers scores are solely computed based on their distance to</span>
+<span class="sd">    the closest large cluster center.</span>
+<span class="sd">    By default, kMeans is used for clustering algorithm instead of</span>
+<span class="sd">    Squeezer algorithm mentioned in the original paper for multiple reasons.</span>
+<span class="sd">    See :cite:`he2003discovering` for details.</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+<span class="sd">    n_clusters : int, optional (default=8)</span>
+<span class="sd">        The number of clusters to form as well as the number of</span>
+<span class="sd">        centroids to generate.</span>
+
+<span class="sd">    contamination : float in (0., 0.5), optional (default=0.1)</span>
+<span class="sd">        The amount of contamination of the data set,</span>
+<span class="sd">        i.e. the proportion of outliers in the data set. Used when fitting to</span>
+<span class="sd">        define the threshold on the decision function.</span>
+
+<span class="sd">    clustering_estimator : Estimator, optional (default=None)</span>
+<span class="sd">        The base clustering algorithm for performing data clustering.</span>
+<span class="sd">        A valid clustering algorithm should be passed in. The estimator should</span>
+<span class="sd">        have standard sklearn APIs, fit() and predict(). The estimator should</span>
+<span class="sd">        have attributes ``labels_`` and ``cluster_centers_``.</span>
+<span class="sd">        If ``cluster_centers_`` is not in the attributes once the model is fit,</span>
+<span class="sd">        it is calculated as the mean of the samples in a cluster.</span>
+<span class="sd">        If not set, CBLOF uses KMeans for scalability. See</span>
+<span class="sd">        https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html</span>
+
+<span class="sd">    alpha : float in (0.5, 1), optional (default=0.9)</span>
+<span class="sd">        Coefficient for deciding small and large clusters. The ratio</span>
+<span class="sd">        of the number of samples in large clusters to the number of samples in</span>
+<span class="sd">        small clusters.</span>
+
+<span class="sd">    beta : int or float in (1,), optional (default=5).</span>
+<span class="sd">        Coefficient for deciding small and large clusters. For a list</span>
+<span class="sd">        sorted clusters by size `|C1|, \|C2|, ..., |Cn|, beta = |Ck|/|Ck-1|`</span>
+
+<span class="sd">    use_weights : bool, optional (default=False)</span>
+<span class="sd">        If set to True, the size of clusters are used as weights in</span>
+<span class="sd">        outlier score calculation.</span>
+
+<span class="sd">    check_estimator : bool, optional (default=False)</span>
+<span class="sd">        If set to True, check whether the base estimator is consistent with</span>
+<span class="sd">        sklearn standard.</span>
+<span class="sd">        .. warning::</span>
+<span class="sd">            check_estimator may throw errors with scikit-learn 0.20 above.</span>
+
+<span class="sd">    random_state : int, RandomState or None, optional (default=None)</span>
+<span class="sd">        If int, random_state is the seed used by the random</span>
+<span class="sd">        number generator; If RandomState instance, random_state is the random</span>
+<span class="sd">        number generator; If None, the random number generator is the</span>
+<span class="sd">        RandomState instance used by `np.random`.</span>
+
+<span class="sd">.. dropdown:: Attributes</span>
+<span class="sd">    </span>
+<span class="sd">    decision_scores_ : numpy array of shape (n_samples,)</span>
+<span class="sd">        The outlier scores of the training data.</span>
+<span class="sd">        The higher, the more abnormal. Outliers tend to have higher</span>
+<span class="sd">        scores. This value is available once the detector is</span>
+<span class="sd">        fitted.</span>
+<span class="sd">    threshold_ : float</span>
+<span class="sd">        The threshold is based on ``contamination``. It is the</span>
+<span class="sd">        ``n_samples * contamination`` most abnormal samples in</span>
+<span class="sd">        ``decision_scores_``. The threshold is calculated for generating</span>
+<span class="sd">        binary outlier labels.</span>
+<span class="sd">    labels_ : int, either 0 or 1</span>
+<span class="sd">        The binary labels of the training data. 0 stands for inliers</span>
+<span class="sd">        and 1 for outliers/anomalies. It is generated by applying</span>
+<span class="sd">        ``threshold_`` on ``decision_scores_``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata_base</span><span class="o">.</span><span class="n">PrimitiveMetadata</span><span class="p">({</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;TODS.anomaly_detection_primitives.CBLOFPrimitive&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;python_path&quot;</span><span class="p">:</span> <span class="s2">&quot;d3m.primitives.tods.detection_algorithm.pyod_cblof&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s2">&quot;DATALAB @Taxes A&amp;M University&quot;</span><span class="p">,</span> 
+            <span class="s1">&#39;contact&#39;</span><span class="p">:</span> <span class="s1">&#39;mailto:khlai037@tamu.edu&#39;</span><span class="p">,</span>       
+        <span class="p">},</span>
+        <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;hyperparams_to_tune&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;contamination&#39;</span><span class="p">],</span>
+        <span class="s2">&quot;algorithm_types&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="n">metadata_base</span><span class="o">.</span><span class="n">PrimitiveAlgorithmType</span><span class="o">.</span><span class="n">TODS_PRIMITIVE</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;primitive_family&quot;</span><span class="p">:</span> <span class="n">metadata_base</span><span class="o">.</span><span class="n">PrimitiveFamily</span><span class="o">.</span><span class="n">ANOMALY_DETECTION</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid3</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">NAMESPACE_DNS</span><span class="p">,</span> <span class="s1">&#39;CBLOFPrimitive&#39;</span><span class="p">)),</span>
+    <span class="p">})</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+                 <span class="n">hyperparams</span><span class="p">:</span> <span class="n">Hyperparams</span><span class="p">,</span> <span class="c1">#</span>
+                 <span class="n">random_seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                 <span class="n">docker_containers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DockerContainer</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">hyperparams</span><span class="o">=</span><span class="n">hyperparams</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="n">random_seed</span><span class="p">,</span> <span class="n">docker_containers</span><span class="o">=</span><span class="n">docker_containers</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_clf</span> <span class="o">=</span> <span class="n">CBLOF</span><span class="p">(</span><span class="n">contamination</span><span class="o">=</span><span class="n">hyperparams</span><span class="p">[</span><span class="s1">&#39;contamination&#39;</span><span class="p">],</span>
+                          <span class="n">n_clusters</span><span class="o">=</span><span class="n">hyperparams</span><span class="p">[</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">],</span>
+                          <span class="n">alpha</span><span class="o">=</span><span class="n">hyperparams</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">],</span>
+                          <span class="n">beta</span><span class="o">=</span><span class="n">hyperparams</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">],</span>
+                          <span class="n">use_weights</span><span class="o">=</span><span class="n">hyperparams</span><span class="p">[</span><span class="s1">&#39;use_weights&#39;</span><span class="p">],</span>
+                          <span class="n">check_estimator</span><span class="o">=</span><span class="n">hyperparams</span><span class="p">[</span><span class="s1">&#39;check_estimator&#39;</span><span class="p">],</span>
+                          <span class="n">random_state</span><span class="o">=</span><span class="n">hyperparams</span><span class="p">[</span><span class="s1">&#39;random_state&#39;</span><span class="p">],</span>
+                          <span class="p">)</span>
+
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">set_training_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">Inputs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set training data for outlier detection.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inputs: Container DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_training_data</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CallResult</span><span class="p">[</span><span class="kc">None</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fit model with training data.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        *: Container DataFrame. </span>
+<span class="sd">            Time series data up to fit.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">produce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">Inputs</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CallResult</span><span class="p">[</span><span class="n">Outputs</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Process the testing data.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inputs: Container DataFrame. </span>
+<span class="sd">            Time series data up to outlier detection.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Container DataFrame</span>
+<span class="sd">        1 marks Outliers, 0 marks normal.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="n">iterations</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Params</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return parameters.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        class Params</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set parameters for outlier detection.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params: class Params</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span></div>
+
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, DataLab@Rice University
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/furo.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    </body>
+</html>

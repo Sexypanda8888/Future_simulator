@@ -1,0 +1,1848 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="tods.reinforcement" href="tods.reinforcement.html" /><link rel="prev" title="tods.feature_analysis" href="tods.feature_analysis.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.06.21"/>
+        <title>tods.detection_algorithm - TODS 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">TODS 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/tods_menu_logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">TODS 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PythonPathCheatSheet.html">Python Path Cheat Sheet</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tods.data_processing.html">tods.data_processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tods.timeseries_processing.html">tods.timeseries_processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tods.feature_analysis.html">tods.feature_analysis</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">tods.detection_algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tods.reinforcement.html">tods.reinforcement</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="tods-detection-algorithm">
+<h1>tods.detection_algorithm<a class="headerlink" href="#tods-detection-algorithm" title="Permalink to this headline">#</a></h1>
+<section id="tods-detection-algorithm-autoregodetect">
+<span id="id1"></span><h2>tods.detection_algorithm.AutoRegODetect<a class="headerlink" href="#tods-detection-algorithm-autoregodetect" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.AutoRegODetect.AutoRegODetectorPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.AutoRegODetect.</span></span><span class="sig-name descname"><span class="pre">AutoRegODetectorPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.AutoRegODetect.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/AutoRegODetect.html#AutoRegODetectorPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.AutoRegODetect.AutoRegODetectorPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl>
+<dt>Autoregressive models use linear regression to calculate a sample’s</dt><dd><p>deviance from the predicted value, which is then used as its
+outlier scores. This model is for multivariate time series.
+This model handles multivariate time series by various combination
+approaches. See AutoRegOD for univarite data.</p>
+<p>See <a href="#id2"><span class="problematic" id="id3">:cite:`aggarwal2015outlier,zhao2020using`</span></a> for details.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>window_size</strong> (<em>int</em>) – The moving window size.</p></li>
+<li><p><strong>step_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=1</em><em>)</em>) – The displacement for moving window.</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e.
+the proportion of outliers in the data set. When fitting this is used
+to define the threshold on the decision function.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default='average'</em><em>)</em>) – Combination method: {‘average’, ‘maximization’,
+‘median’}. Pass in weights of detector for weighted version.</p></li>
+<li><p><strong>weights</strong> (<em>numpy array of shape</em><em> (</em><em>1</em><em>, </em><em>n_dimensions</em><em>)</em>) – Score weight by dimensions. (default=[1,1,…,1])</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id60"><span class="problematic" id="id61">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id62"><span class="problematic" id="id63">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-dagmm">
+<span id="id4"></span><h2>tods.detection_algorithm.DAGMM<a class="headerlink" href="#tods-detection-algorithm-dagmm" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.DAGMM.DAGMMPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.DAGMM.</span></span><span class="sig-name descname"><span class="pre">DAGMMPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.DAGMM.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/DAGMM.html#DAGMMPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.DAGMM.DAGMMPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><p>Deep Autoencoding Gaussian Mixture Model</p>
+</dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-deeplog">
+<span id="id5"></span><h2>tods.detection_algorithm.DeepLog<a class="headerlink" href="#tods-detection-algorithm-deeplog" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.DeepLog.DeepLogPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.DeepLog.</span></span><span class="sig-name descname"><span class="pre">DeepLogPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.DeepLog.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/DeepLog.html#DeepLogPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.DeepLog.DeepLogPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><p>A primitive that uses DeepLog for outlier detection</p>
+</dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-ensemble">
+<span id="id6"></span><h2>tods.detection_algorithm.Ensemble<a class="headerlink" href="#tods-detection-algorithm-ensemble" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.Ensemble.EnsemblePrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.Ensemble.</span></span><span class="sig-name descname"><span class="pre">EnsemblePrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.Ensemble.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/Ensemble.html#EnsemblePrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.Ensemble.EnsemblePrimitive" title="Permalink to this definition">#</a></dt>
+<dd><p>Ensemble method
+<a href="#id64"><span class="problematic" id="id65">`Calculate the Maximum/Minimum/Average and  Majority Voting for the detection algorithm based on the threshold set for the score`_</span></a></p>
+</dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-kdiscordodetect">
+<span id="id7"></span><h2>tods.detection_algorithm.KDiscordODetect<a class="headerlink" href="#tods-detection-algorithm-kdiscordodetect" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.KDiscordODetect.KDiscordODetectorPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.KDiscordODetect.</span></span><span class="sig-name descname"><span class="pre">KDiscordODetectorPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.KDiscordODetect.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/KDiscordODetect.html#KDiscordODetectorPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.KDiscordODetect.KDiscordODetectorPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl>
+<dt>KDiscord first split multivariate time series into</dt><dd><p>subsequences (matrices), and it use kNN outlier detection based on PyOD.
+For an observation, its distance to its kth nearest neighbor could be
+viewed as the outlying score. It could be viewed as a way to measure
+the density. See <a href="#id8"><span class="problematic" id="id9">:cite:`ramaswamy2000efficient,angiulli2002fast`</span></a> for
+details.</p>
+<p>See <a href="#id10"><span class="problematic" id="id11">:cite:`aggarwal2015outlier,zhao2020using`</span></a> for details.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>window_size</strong> (<em>int</em>) – The moving window size.</p></li>
+<li><p><strong>step_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=1</em><em>)</em>) – The displacement for moving window.</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set,
+i.e. the proportion of outliers in the data set. Used when fitting to
+define the threshold on the decision function.</p></li>
+<li><p><strong>n_neighbors</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default = 5</em><em>)</em>) – Number of neighbors to use by default for k neighbors queries.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default='largest'</em><em>)</em>) – <p>{‘largest’, ‘mean’, ‘median’}</p>
+<ul>
+<li><p>’largest’: use the distance to the kth neighbor as the outlier score</p></li>
+<li><p>’mean’: use the average of all k neighbors as the outlier score</p></li>
+<li><p>’median’: use the median of the distance to k neighbors as the outlier score</p></li>
+</ul>
+</p></li>
+<li><p><strong>radius</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default = 1.0</em><em>)</em>) – Range of parameter space to use by default for <cite>radius_neighbors</cite>
+queries.</p></li>
+<li><p><strong>algorithm</strong> (<em>{'auto'</em><em>, </em><em>'ball_tree'</em><em>, </em><em>'kd_tree'</em><em>, </em><em>'brute'}</em><em>, </em><em>optional</em>) – <p>Algorithm used to compute the nearest neighbors:</p>
+<ul>
+<li><p>’ball_tree’ will use BallTree</p></li>
+<li><p>’kd_tree’ will use KDTree</p></li>
+<li><p>’brute’ will use a brute-force search.</p></li>
+<li><p>’auto’ will attempt to decide the most appropriate algorithm
+based on the values passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code> method.</p></li>
+</ul>
+<p>Note: fitting on sparse input will override the setting of
+this parameter, using brute force.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.74: </span><code class="docutils literal notranslate"><span class="pre">algorithm</span></code> is deprecated in PyOD 0.7.4 and will not be
+possible in 0.7.6. It has to use BallTree for consistency.</p>
+</div>
+</p></li>
+<li><p><strong>leaf_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default = 30</em><em>)</em>) – Leaf size passed to BallTree. This can affect the
+speed of the construction and query, as well as the memory
+required to store the tree.  The optimal value depends on the
+nature of the problem.</p></li>
+<li><p><strong>metric</strong> (<em>string</em><em> or </em><em>callable</em><em>, </em><em>default 'minkowski'</em>) – <p>metric to use for distance computation. Any metric from scikit-learn
+or scipy.spatial.distance can be used.</p>
+<p>If metric is a callable function, it is called on each
+pair of instances (rows) and the resulting value recorded. The callable
+should take two arrays as input and return one value indicating the
+distance between them. This works for Scipy’s metrics, but is less
+efficient than passing the metric name as a string.</p>
+<p>Distance matrices are not supported.</p>
+<p>Valid values for metric are:</p>
+<ul>
+<li><p>from scikit-learn: [‘cityblock’, ‘cosine’, ‘euclidean’, ‘l1’, ‘l2’,
+‘manhattan’]</p></li>
+<li><p>from scipy.spatial.distance: [‘braycurtis’, ‘canberra’, ‘chebyshev’,
+‘correlation’, ‘dice’, ‘hamming’, ‘jaccard’, ‘kulsinski’,
+‘mahalanobis’, ‘matching’, ‘minkowski’, ‘rogerstanimoto’,
+‘russellrao’, ‘seuclidean’, ‘sokalmichener’, ‘sokalsneath’,
+‘sqeuclidean’, ‘yule’]</p></li>
+</ul>
+<p>See the documentation for scipy.spatial.distance for details on these
+metrics.</p>
+</p></li>
+<li><p><strong>p</strong> (<em>integer</em><em>, </em><em>optional</em><em> (</em><em>default = 2</em><em>)</em>) – Parameter for the Minkowski metric from
+sklearn.metrics.pairwise.pairwise_distances. When p = 1, this is
+equivalent to using manhattan_distance (l1), and euclidean_distance
+(l2) for p = 2. For arbitrary p, minkowski_distance (l_p) is used.
+See <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.pairwise_distances">http://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.pairwise_distances</a></p></li>
+<li><p><strong>metric_params</strong> (<em>dict</em><em>, </em><em>optional</em><em> (</em><em>default = None</em><em>)</em>) – Additional keyword arguments for the metric function.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id66"><span class="problematic" id="id67">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id68"><span class="problematic" id="id69">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id70"><span class="problematic" id="id71">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-lstmodetect">
+<span id="id12"></span><h2>tods.detection_algorithm.LSTMODetect<a class="headerlink" href="#tods-detection-algorithm-lstmodetect" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.LSTMODetect.LSTMODetectorPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.LSTMODetect.</span></span><span class="sig-name descname"><span class="pre">LSTMODetectorPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.LSTMODetect.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/LSTMODetect.html#LSTMODetectorPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.LSTMODetect.LSTMODetectorPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><p>A base class for primitives which have to be fitted before they can start
+producing (useful) outputs from inputs, but they are fitted only on input data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>window_size</strong> (<em>int</em>) – The moving window size.</p></li>
+<li><p><strong>step_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=1</em><em>)</em>) – The displacement for moving window.</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e.
+the proportion of outliers in the data set. When fitting this is used
+to define the threshold on the decision function.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id72"><span class="problematic" id="id73">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id74"><span class="problematic" id="id75">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-matrixprofile">
+<span id="id13"></span><h2>tods.detection_algorithm.MatrixProfile<a class="headerlink" href="#tods-detection-algorithm-matrixprofile" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.MatrixProfile.MatrixProfilePrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.MatrixProfile.</span></span><span class="sig-name descname"><span class="pre">MatrixProfilePrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.MatrixProfile.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/MatrixProfile.html#MatrixProfilePrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.MatrixProfile.MatrixProfilePrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>A primitive that performs matrix profile on a DataFrame using Stumpy package</dt><dd><p>Stumpy documentation: <a class="reference external" href="https://stumpy.readthedocs.io/en/latest/index.html">https://stumpy.readthedocs.io/en/latest/index.html</a></p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>T_A</strong> (<em>ndarray</em>) – The time series or sequence for which to compute the matrix profile</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – Window size</p></li>
+<li><p><strong>T_B</strong> (<em>ndarray</em>) – The time series or sequence that contain your query subsequences
+of interest. Default is <cite>None</cite> which corresponds to a self-join.</p></li>
+<li><p><strong>ignore_trivial</strong> (<em>bool</em>) – Set to <cite>True</cite> if this is a self-join. Otherwise, for AB-join, set this
+to <cite>False</cite>. Default is <cite>True</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Returns<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt>out<span class="classifier">ndarray</span></dt><dd><p class="sd-card-text">The first column consists of the matrix profile, the second column
+consists of the matrix profile indices, the third column consists of
+the left matrix profile indices, and the fourth column consists of
+the right matrix profile indices.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pcaodetect">
+<span id="id14"></span><h2>tods.detection_algorithm.PCAODetect<a class="headerlink" href="#tods-detection-algorithm-pcaodetect" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PCAODetect.PCAODetectorPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PCAODetect.</span></span><span class="sig-name descname"><span class="pre">PCAODetectorPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PCAODetect.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PCAODetect.html#PCAODetectorPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PCAODetect.PCAODetectorPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>PCA-based outlier detection with both univariate and multivariate</dt><dd><p>time series data. TS data will be first transformed to tabular format.
+For univariate data, it will be in shape of [valid_length, window_size].
+for multivariate data with d sequences, it will be in the shape of
+[valid_length, window_size].</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>window_size</strong> (<em>int</em>) – The moving window size.</p></li>
+<li><p><strong>step_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=1</em><em>)</em>) – The displacement for moving window.</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set,
+i.e. the proportion of outliers in the data set. Used when fitting to
+define the threshold on the decision function.</p></li>
+<li><p><strong>n_components</strong> (<em>int</em><em>, </em><em>float</em><em>, </em><em>None</em><em> or </em><em>string</em>) – <p>Number of components to keep. It should be smaller than the window_size.
+if n_components is not set all components are kept:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_components</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>if n_components == ‘mle’ and svd_solver == ‘full’, Minka’s MLE is used
+to guess the dimension
+if <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">n_components</span> <span class="pre">&lt;</span> <span class="pre">1</span></code> and svd_solver == ‘full’, select the number
+of components such that the amount of variance that needs to be
+explained is greater than the percentage specified by n_components
+n_components cannot be equal to n_features for svd_solver == ‘arpack’.</p>
+</p></li>
+<li><p><strong>n_selected_components</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – Number of selected principal components
+for calculating the outlier scores. It is not necessarily equal to
+the total number of the principal components. If not set, use
+all principal components.</p></li>
+<li><p><strong>whiten</strong> (<em>bool</em><em>, </em><em>optional</em><em> (</em><em>default False</em><em>)</em>) – <p>When True (False by default) the <cite>components_</cite> vectors are multiplied
+by the square root of n_samples and then divided by the singular values
+to ensure uncorrelated outputs with unit component-wise variances.</p>
+<p>Whitening will remove some information from the transformed signal
+(the relative variance scales of the components) but can sometime
+improve the predictive accuracy of the downstream estimators by
+making their data respect some hard-wired assumptions.</p>
+</p></li>
+<li><p><strong>svd_solver</strong> (<em>string {'auto'</em><em>, </em><em>'full'</em><em>, </em><em>'arpack'</em><em>, </em><em>'randomized'}</em>) – <ul>
+<li><dl class="simple">
+<dt>auto :</dt><dd><p>the solver is selected by a default policy based on <cite>X.shape</cite> and
+<cite>n_components</cite>: if the input data is larger than 500x500 and the
+number of components to extract is lower than 80% of the smallest
+dimension of the data, then the more efficient ‘randomized’
+method is enabled. Otherwise the exact full SVD is computed and
+optionally truncated afterwards.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>full :</dt><dd><p>run exact full SVD calling the standard LAPACK solver via
+<cite>scipy.linalg.svd</cite> and select the components by postprocessing</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>arpack :</dt><dd><p>run SVD truncated to n_components calling ARPACK solver via
+<cite>scipy.sparse.linalg.svds</cite>. It requires strictly
+0 &lt; n_components &lt; X.shape[1]</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>randomized :</dt><dd><p>run randomized SVD by the method of Halko et al.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+<li><p><strong>tol</strong> (<em>float &gt;= 0</em><em>, </em><em>optional</em><em> (</em><em>default .0</em><em>)</em>) – Tolerance for singular values computed by svd_solver == ‘arpack’.</p></li>
+<li><p><strong>iterated_power</strong> (<em>int &gt;= 0</em><em>, or </em><em>'auto'</em><em>, </em><em>(</em><em>default 'auto'</em><em>)</em>) – Number of iterations for the power method computed by
+svd_solver == ‘randomized’.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em><em>, </em><em>RandomState instance</em><em> or </em><em>None</em><em>, </em><em>optional</em><em> (</em><em>default None</em><em>)</em>) – If int, random_state is the seed used by the random number generator;
+If RandomState instance, random_state is the random number generator;
+If None, the random number generator is the RandomState instance used
+by <cite>np.random</cite>. Used when <code class="docutils literal notranslate"><span class="pre">svd_solver</span></code> == ‘arpack’ or ‘randomized’.</p></li>
+<li><p><strong>weighted</strong> (<em>bool</em><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – If True, the eigenvalues are used in score computation.
+The eigenvectors with small eigenvalues comes with more importance
+in outlier score calculation.</p></li>
+<li><p><strong>standardization</strong> (<em>bool</em><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – If True, perform standardization first to convert
+data to zero mean and unit variance.
+See <a class="reference external" href="http://scikit-learn.org/stable/auto_examples/preprocessing/plot_scaling_importance.html">http://scikit-learn.org/stable/auto_examples/preprocessing/plot_scaling_importance.html</a></p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id76"><span class="problematic" id="id77">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id78"><span class="problematic" id="id79">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id80"><span class="problematic" id="id81">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodabod">
+<span id="id15"></span><h2>tods.detection_algorithm.PyodABOD<a class="headerlink" href="#tods-detection-algorithm-pyodabod" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodABOD.ABODPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodABOD.</span></span><span class="sig-name descname"><span class="pre">ABODPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodABOD.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodABOD.html#ABODPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodABOD.ABODPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl>
+<dt>ABOD class for Angle-base Outlier Detection.</dt><dd><p>For an observation, the variance of its weighted cosine scores to all
+neighbors could be viewed as the outlying score.
+See <a href="#id16"><span class="problematic" id="id17">:cite:`kriegel2008angle`</span></a> for details.</p>
+<p>Two versions of ABOD are supported:</p>
+<ul class="simple">
+<li><p>Fast ABOD: use k nearest neighbors to approximate.</p></li>
+<li><p>Original ABOD: consider all training points with high time complexity at
+O(n^3).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e.
+the proportion of outliers in the data set. Used when fitting to
+define the threshold on the decision function.</p></li>
+<li><p><strong>n_neighbors</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=10</em><em>)</em>) – Number of neighbors to use by default for k neighbors queries.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default='fast'</em><em>)</em>) – <p>Valid values for metric are:</p>
+<ul>
+<li><p>’fast’: fast ABOD. Only consider n_neighbors of training points</p></li>
+<li><p>’default’: original ABOD with all training points, which could be
+slow</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id82"><span class="problematic" id="id83">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id84"><span class="problematic" id="id85">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id86"><span class="problematic" id="id87">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodae">
+<span id="id18"></span><h2>tods.detection_algorithm.PyodAE<a class="headerlink" href="#tods-detection-algorithm-pyodae" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodAE.AutoEncoderPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodAE.</span></span><span class="sig-name descname"><span class="pre">AutoEncoderPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodAE.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodAE.html#AutoEncoderPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodAE.AutoEncoderPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Auto Encoder (AE) is a type of neural networks for learning useful data</dt><dd><p>representations unsupervisedly. Similar to PCA, AE could be used to
+detect outlying objects in the data by calculating the reconstruction
+errors. See <a href="#id19"><span class="problematic" id="id20">:cite:`aggarwal2015outlier`</span></a> Chapter 3 for details.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hidden_neurons</strong> (<em>list</em><em>, </em><em>optional</em><em> (</em><em>default=</em><em>[</em><em>4</em><em>,</em><em>2</em><em>,</em><em>4</em><em>]</em><em>)</em>) – The number of neurons per hidden layers.</p></li>
+<li><p><strong>hidden_activation</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default='relu'</em><em>)</em>) – Activation function to use for hidden layers.
+All hidden layers are forced to use the same type of activation.
+See <a class="reference external" href="https://keras.io/activations/">https://keras.io/activations/</a></p></li>
+<li><p><strong>output_activation</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default='sigmoid'</em><em>)</em>) – Activation function to use for output layer.
+See <a class="reference external" href="https://keras.io/activations/">https://keras.io/activations/</a></p></li>
+<li><p><strong>loss</strong> (<em>str</em><em> or </em><em>obj</em><em>, </em><em>optional</em><em> (</em><em>default=keras.losses.mean_squared_error</em><em>)</em>) – String (name of objective function) or objective function.
+See <a class="reference external" href="https://keras.io/losses/">https://keras.io/losses/</a></p></li>
+<li><p><strong>optimizer</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default='adam'</em><em>)</em>) – String (name of optimizer) or optimizer instance.
+See <a class="reference external" href="https://keras.io/optimizers/">https://keras.io/optimizers/</a></p></li>
+<li><p><strong>epochs</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=100</em><em>)</em>) – Number of epochs to train the model.</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=32</em><em>)</em>) – Number of samples per gradient update.</p></li>
+<li><p><strong>dropout_rate</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>1</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.2</em><em>)</em>) – The dropout to be used across all layers.</p></li>
+<li><p><strong>l2_regularizer</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>1</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The regularization strength of activity_regularizer
+applied on each layer. By default, l2 regularizer is used. See
+<a class="reference external" href="https://keras.io/regularizers/">https://keras.io/regularizers/</a></p></li>
+<li><p><strong>validation_size</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>1</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The percentage of data to be used for validation.</p></li>
+<li><p><strong>preprocessing</strong> (<em>bool</em><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – If True, apply standardization on the data.</p></li>
+<li><p><strong>verbose</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=1</em><em>)</em>) – Verbosity mode.
+- 0 = silent
+- 1 = progress bar
+- 2 = one line per epoch.
+For verbosity &gt;= 1, model summary may be printed.</p></li>
+<li><p><strong>random_state</strong> (<em>random_state: int</em><em>, </em><em>RandomState instance</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – (default=None)
+If int, random_state is the seed used by the random
+number generator; If RandomState instance, random_state is the random
+number generator; If None, the random number generator is the
+RandomState instance used by <cite>np.random</cite>.</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e.
+the proportion of outliers in the data set. When fitting this is used
+to define the threshold on the decision function.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id88"><span class="problematic" id="id89">encoding_dim_</span></a><span class="classifier">int</span></dt><dd><p class="sd-card-text">The number of neurons in the encoding layer.</p>
+</dd>
+<dt><a href="#id90"><span class="problematic" id="id91">compression_rate_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The ratio between the original feature and
+the number of neurons in the encoding layer.</p>
+</dd>
+<dt><a href="#id92"><span class="problematic" id="id93">model_</span></a><span class="classifier">Keras Object</span></dt><dd><p class="sd-card-text">The underlying AutoEncoder in Keras.</p>
+</dd>
+<dt><a href="#id94"><span class="problematic" id="id95">history_</span></a>: Keras Object</dt><dd><p class="sd-card-text">The AutoEncoder training history.</p>
+</dd>
+<dt><a href="#id96"><span class="problematic" id="id97">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id98"><span class="problematic" id="id99">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id100"><span class="problematic" id="id101">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodcblof">
+<span id="id21"></span><h2>tods.detection_algorithm.PyodCBLOF<a class="headerlink" href="#tods-detection-algorithm-pyodcblof" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodCBLOF.CBLOFPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodCBLOF.</span></span><span class="sig-name descname"><span class="pre">CBLOFPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodCBLOF.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodCBLOF.html#CBLOFPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodCBLOF.CBLOFPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>The CBLOF operator calculates the outlier score based on cluster-based</dt><dd><p>local outlier factor.
+CBLOF takes as an input the data set and the cluster model that was
+generated by a clustering algorithm. It classifies the clusters into small
+clusters and large clusters using the parameters alpha and beta.
+The anomaly score is then calculated based on the size of the cluster the
+point belongs to as well as the distance to the nearest large cluster.
+Use weighting for outlier factor based on the sizes of the clusters as
+proposed in the original publication. Since this might lead to unexpected
+behavior (outliers close to small clusters are not found), it is disabled
+by default.Outliers scores are solely computed based on their distance to
+the closest large cluster center.
+By default, kMeans is used for clustering algorithm instead of
+Squeezer algorithm mentioned in the original paper for multiple reasons.
+See <a href="#id22"><span class="problematic" id="id23">:cite:`he2003discovering`</span></a> for details.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_clusters</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=8</em><em>)</em>) – The number of clusters to form as well as the number of
+centroids to generate.</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set,
+i.e. the proportion of outliers in the data set. Used when fitting to
+define the threshold on the decision function.</p></li>
+<li><p><strong>clustering_estimator</strong> (<em>Estimator</em><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – The base clustering algorithm for performing data clustering.
+A valid clustering algorithm should be passed in. The estimator should
+have standard sklearn APIs, fit() and predict(). The estimator should
+have attributes <code class="docutils literal notranslate"><span class="pre">labels_</span></code> and <code class="docutils literal notranslate"><span class="pre">cluster_centers_</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">cluster_centers_</span></code> is not in the attributes once the model is fit,
+it is calculated as the mean of the samples in a cluster.
+If not set, CBLOF uses KMeans for scalability. See
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html</a></p></li>
+<li><p><strong>alpha</strong> (<em>float in</em><em> (</em><em>0.5</em><em>, </em><em>1</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.9</em><em>)</em>) – Coefficient for deciding small and large clusters. The ratio
+of the number of samples in large clusters to the number of samples in
+small clusters.</p></li>
+<li><p><strong>beta</strong> (<em>int</em><em> or </em><em>float in</em><em> (</em><em>1</em><em>,</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=5</em><em>)</em><em>.</em>) – Coefficient for deciding small and large clusters. For a list
+sorted clusters by size <cite>|C1|, |C2|, …, |Cn|, beta = |Ck|/|Ck-1|</cite></p></li>
+<li><p><strong>use_weights</strong> (<em>bool</em><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) – If set to True, the size of clusters are used as weights in
+outlier score calculation.</p></li>
+<li><p><strong>check_estimator</strong> (<em>bool</em><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) – <p>If set to True, check whether the base estimator is consistent with
+sklearn standard.
+.. warning:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_estimator</span> <span class="n">may</span> <span class="n">throw</span> <span class="n">errors</span> <span class="k">with</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="mf">0.20</span> <span class="n">above</span><span class="o">.</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>random_state</strong> (<em>int</em><em>, </em><em>RandomState</em><em> or </em><em>None</em><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – If int, random_state is the seed used by the random
+number generator; If RandomState instance, random_state is the random
+number generator; If None, the random number generator is the
+RandomState instance used by <cite>np.random</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id102"><span class="problematic" id="id103">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id104"><span class="problematic" id="id105">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id106"><span class="problematic" id="id107">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodcof">
+<span id="id24"></span><h2>tods.detection_algorithm.PyodCOF<a class="headerlink" href="#tods-detection-algorithm-pyodcof" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodCOF.COFPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodCOF.</span></span><span class="sig-name descname"><span class="pre">COFPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodCOF.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodCOF.html#COFPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodCOF.COFPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Connectivity-Based Outlier Factor (COF) COF uses the ratio of average</dt><dd><p>chaining distance of data point and the average of average chaining
+distance of k nearest neighbor of the data point, as the outlier score
+for observations.
+See <a href="#id25"><span class="problematic" id="id26">:cite:`tang2002enhancing`</span></a> for details.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e.
+the proportion of outliers in the data set. Used when fitting to
+define the threshold on the decision function.</p></li>
+<li><p><strong>n_neighbors</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=20</em><em>)</em>) – Number of neighbors to use by default for k neighbors queries.
+Note that n_neighbors should be less than the number of samples.
+If n_neighbors is larger than the number of samples provided,
+all samples will be used.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id108"><span class="problematic" id="id109">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id110"><span class="problematic" id="id111">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id112"><span class="problematic" id="id113">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+<dt><a href="#id114"><span class="problematic" id="id115">n_neighbors_</span></a>: int</dt><dd><p class="sd-card-text">Number of neighbors to use by default for k neighbors queries.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodhbos">
+<span id="id27"></span><h2>tods.detection_algorithm.PyodHBOS<a class="headerlink" href="#tods-detection-algorithm-pyodhbos" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodHBOS.HBOSPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodHBOS.</span></span><span class="sig-name descname"><span class="pre">HBOSPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodHBOS.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodHBOS.html#HBOSPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodHBOS.HBOSPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Histogram-based Outlier Detection (HBOS)</dt><dd><p>Histogram- based outlier detection (HBOS) is an efficient unsupervised
+method. It assumes the feature independence and calculates the degree
+of outlyingness by building histograms. See <a href="#id28"><span class="problematic" id="id29">:cite:`goldstein2012histogram`</span></a>
+for details.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_bins</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=10</em><em>)</em>) – The number of bins.</p></li>
+<li><p><strong>alpha</strong> (<em>float in</em><em> (</em><em>0</em><em>, </em><em>1</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The regularizer for preventing overflow.</p></li>
+<li><p><strong>tol</strong> (<em>float in</em><em> (</em><em>0</em><em>, </em><em>1</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The parameter to decide the flexibility while dealing
+the samples falling outside the bins.</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set,
+i.e. the proportion of outliers in the data set. Used when fitting to
+define the threshold on the decision function.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id116"><span class="problematic" id="id117">bin_edges_</span></a><span class="classifier">numpy array of shape (n_bins + 1, n_features )</span></dt><dd><p class="sd-card-text">The edges of the bins.</p>
+</dd>
+<dt><a href="#id118"><span class="problematic" id="id119">hist_</span></a><span class="classifier">numpy array of shape (n_bins, n_features)</span></dt><dd><p class="sd-card-text">The density of each histogram.</p>
+</dd>
+<dt><a href="#id120"><span class="problematic" id="id121">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is fitted.</p>
+</dd>
+<dt><a href="#id122"><span class="problematic" id="id123">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id124"><span class="problematic" id="id125">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodisolationforest">
+<span id="id30"></span><h2>tods.detection_algorithm.PyodIsolationForest<a class="headerlink" href="#tods-detection-algorithm-pyodisolationforest" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodIsolationForest.IsolationForestPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodIsolationForest.</span></span><span class="sig-name descname"><span class="pre">IsolationForestPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodIsolationForest.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodIsolationForest.html#IsolationForestPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodIsolationForest.IsolationForestPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Wrapper of Pyod Isolation Forest with more functionalities.</dt><dd><p>The IsolationForest ‘isolates’ observations by randomly selecting a
+feature and then randomly selecting a split value between the maximum and
+minimum values of the selected feature.
+See <a href="#id31"><span class="problematic" id="id32">:cite:`liu2008isolation,liu2012isolation`</span></a> for details.
+Since recursive partitioning can be represented by a tree structure, the
+number of splittings required to isolate a sample is equivalent to the path
+length from the root node to the terminating node.
+This path length, averaged over a forest of such random trees, is a
+measure of normality and our decision function.
+Random partitioning produces noticeably shorter paths for anomalies.
+Hence, when a forest of random trees collectively produce shorter path
+lengths for particular samples, they are highly likely to be anomalies.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_estimators</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=100</em><em>)</em>) – The number of base estimators in the ensemble.</p></li>
+<li><p><strong>max_samples</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em><em> (</em><em>default=&quot;auto&quot;</em><em>)</em>) – <dl class="simple">
+<dt>The number of samples to draw from X to train each base estimator.</dt><dd><ul>
+<li><p>If int, then draw <cite>max_samples</cite> samples.</p></li>
+<li><p>If float, then draw <cite>max_samples * X.shape[0]</cite> samples.</p></li>
+<li><p>If “auto”, then <cite>max_samples=min(256, n_samples)</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>If max_samples is larger than the number of samples provided,
+all samples will be used for all trees (no sampling).</p>
+</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e. the proportion
+of outliers in the data set. Used when fitting to define the threshold
+on the decision function.</p></li>
+<li><p><strong>max_features</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em><em> (</em><em>default=1.0</em><em>)</em>) – <dl class="simple">
+<dt>The number of features to draw from X to train each base estimator.</dt><dd><ul>
+<li><p>If int, then draw <cite>max_features</cite> features.</p></li>
+<li><p>If float, then draw <cite>max_features * X.shape[1]</cite> features.</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>bootstrap</strong> (<em>bool</em><em>, </em><em>optional</em><em> (</em><em>default=False</em><em>)</em>) – If True, individual trees are fit on random subsets of the training
+data sampled with replacement. If False, sampling without replacement
+is performed.</p></li>
+<li><p><strong>behaviour</strong> (<em>str</em><em>, </em><em>default='old'</em>) – Behaviour of the <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> which can be either ‘old’ or
+‘new’. Passing <code class="docutils literal notranslate"><span class="pre">behaviour='new'</span></code> makes the <code class="docutils literal notranslate"><span class="pre">decision_function</span></code>
+change to match other anomaly detection algorithm API which will be
+the default behaviour in the future. As explained in details in the
+<code class="docutils literal notranslate"><span class="pre">offset_</span></code> attribute documentation, the <code class="docutils literal notranslate"><span class="pre">decision_function</span></code> becomes
+dependent on the contamination parameter, in such a way that 0 becomes
+its natural threshold to detect outliers.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em><em>, </em><em>RandomState instance</em><em> or </em><em>None</em><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – If int, random_state is the seed used by the random number generator;
+If RandomState instance, random_state is the random number generator;
+If None, the random number generator is the RandomState instance used
+by <cite>np.random</cite>.</p></li>
+<li><p><strong>verbose</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=0</em><em>)</em>) – Controls the verbosity of the tree building process.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id126"><span class="problematic" id="id127">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id128"><span class="problematic" id="id129">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id130"><span class="problematic" id="id131">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodknn">
+<span id="id33"></span><h2>tods.detection_algorithm.PyodKNN<a class="headerlink" href="#tods-detection-algorithm-pyodknn" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodKNN.KNNPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodKNN.</span></span><span class="sig-name descname"><span class="pre">KNNPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodKNN.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodKNN.html#KNNPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodKNN.KNNPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>kNN class for outlier detection.</dt><dd><p>For an observation, its distance to its kth nearest neighbor could be
+viewed as the outlying score. It could be viewed as a way to measure
+the density. See <a href="#id34"><span class="problematic" id="id35">:cite:`ramaswamy2000efficient,angiulli2002fast`</span></a> for
+details.
+Three kNN detectors are supported:
+largest: use the distance to the kth neighbor as the outlier score
+mean: use the average of all k neighbors as the outlier score
+median: use the median of the distance to k neighbors as the outlier score</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set,
+i.e. the proportion of outliers in the data set. Used when fitting to
+define the threshold on the decision function.</p></li>
+<li><p><strong>n_neighbors</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default = 5</em><em>)</em>) – Number of neighbors to use by default for k neighbors queries.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default='largest'</em><em>)</em>) – <p>{‘largest’, ‘mean’, ‘median’}</p>
+<ul>
+<li><p>’largest’: use the distance to the kth neighbor as the outlier score</p></li>
+<li><p>’mean’: use the average of all k neighbors as the outlier score</p></li>
+<li><p>’median’: use the median of the distance to k neighbors as the
+outlier score</p></li>
+</ul>
+</p></li>
+<li><p><strong>radius</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default = 1.0</em><em>)</em>) – Range of parameter space to use by default for <cite>radius_neighbors</cite>
+queries.</p></li>
+<li><p><strong>algorithm</strong> (<em>{'auto'</em><em>, </em><em>'ball_tree'</em><em>, </em><em>'kd_tree'</em><em>, </em><em>'brute'}</em><em>, </em><em>optional</em>) – <p>Algorithm used to compute the nearest neighbors:</p>
+<ul>
+<li><p>’ball_tree’ will use BallTree</p></li>
+<li><p>’kd_tree’ will use KDTree</p></li>
+<li><p>’brute’ will use a brute-force search.</p></li>
+<li><p>’auto’ will attempt to decide the most appropriate algorithm
+based on the values passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code> method.</p></li>
+</ul>
+<p>Note: fitting on sparse input will override the setting of
+this parameter, using brute force.
+.. deprecated:: 0.74</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">algorithm</span></code> is deprecated in PyOD 0.7.4 and will not be
+possible in 0.7.6. It has to use BallTree for consistency.</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>leaf_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default = 30</em><em>)</em>) – Leaf size passed to BallTree. This can affect the
+speed of the construction and query, as well as the memory
+required to store the tree.  The optimal value depends on the
+nature of the problem.</p></li>
+<li><p><strong>metric</strong> (<em>string</em><em> or </em><em>callable</em><em>, </em><em>default 'minkowski'</em>) – <p>metric to use for distance computation. Any metric from scikit-learn
+or scipy.spatial.distance can be used.
+If metric is a callable function, it is called on each
+pair of instances (rows) and the resulting value recorded. The callable
+should take two arrays as input and return one value indicating the
+distance between them. This works for Scipy’s metrics, but is less
+efficient than passing the metric name as a string.
+Distance matrices are not supported.
+Valid values for metric are:</p>
+<ul>
+<li><p>from scikit-learn: [‘cityblock’, ‘cosine’, ‘euclidean’, ‘l1’, ‘l2’,
+‘manhattan’]</p></li>
+<li><p>from scipy.spatial.distance: [‘braycurtis’, ‘canberra’, ‘chebyshev’,
+‘correlation’, ‘dice’, ‘hamming’, ‘jaccard’, ‘kulsinski’,
+‘mahalanobis’, ‘matching’, ‘minkowski’, ‘rogerstanimoto’,
+‘russellrao’, ‘seuclidean’, ‘sokalmichener’, ‘sokalsneath’,
+‘sqeuclidean’, ‘yule’]</p></li>
+</ul>
+<p>See the documentation for scipy.spatial.distance for details on these
+metrics.</p>
+</p></li>
+<li><p><strong>p</strong> (<em>integer</em><em>, </em><em>optional</em><em> (</em><em>default = 2</em><em>)</em>) – Parameter for the Minkowski metric from
+sklearn.metrics.pairwise.pairwise_distances. When p = 1, this is
+equivalent to using manhattan_distance (l1), and euclidean_distance
+(l2) for p = 2. For arbitrary p, minkowski_distance (l_p) is used.
+See <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.pairwise_distances">http://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.pairwise_distances</a></p></li>
+<li><p><strong>metric_params</strong> (<em>dict</em><em>, </em><em>optional</em><em> (</em><em>default = None</em><em>)</em>) – Additional keyword arguments for the metric function.</p></li>
+<li><p><strong>n_jobs</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default = 1</em><em>)</em>) – The number of parallel jobs to run for neighbors search.
+If <code class="docutils literal notranslate"><span class="pre">-1</span></code>, then the number of jobs is set to the number of CPU cores.
+Affects only kneighbors and kneighbors_graph methods.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id132"><span class="problematic" id="id133">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id134"><span class="problematic" id="id135">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id136"><span class="problematic" id="id137">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodloda">
+<span id="id36"></span><h2>tods.detection_algorithm.PyodLODA<a class="headerlink" href="#tods-detection-algorithm-pyodloda" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodLODA.LODAPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodLODA.</span></span><span class="sig-name descname"><span class="pre">LODAPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodLODA.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodLODA.html#LODAPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodLODA.LODAPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Wrap of Pyod loda. Loda: Lightweight on-line detector of anomalies. See</dt><dd><p><a href="#id37"><span class="problematic" id="id38">:cite:`pevny2016loda`</span></a> for more information.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set,
+i.e. the proportion of outliers in the data set. Used when fitting to
+define the threshold on the decision function.</p></li>
+<li><p><strong>n_bins</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default = 10</em><em>)</em>) – The number of bins for the histogram.</p></li>
+<li><p><strong>n_random_cuts</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default = 100</em><em>)</em>) – The number of random cuts.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id138"><span class="problematic" id="id139">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id140"><span class="problematic" id="id141">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id142"><span class="problematic" id="id143">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodlof">
+<span id="id39"></span><h2>tods.detection_algorithm.PyodLOF<a class="headerlink" href="#tods-detection-algorithm-pyodlof" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodLOF.LOFPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodLOF.</span></span><span class="sig-name descname"><span class="pre">LOFPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodLOF.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodLOF.html#LOFPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodLOF.LOFPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Wrapper of Pyod LOF Class with more functionalities.</dt><dd><p>Unsupervised Outlier Detection using Local Outlier Factor (LOF).
+The anomaly score of each sample is called Local Outlier Factor.
+It measures the local deviation of density of a given sample with
+respect to its neighbors.
+It is local in that the anomaly score depends on how isolated the object
+is with respect to the surrounding neighborhood.
+More precisely, locality is given by k-nearest neighbors, whose distance
+is used to estimate the local density.
+By comparing the local density of a sample to the local densities of
+its neighbors, one can identify samples that have a substantially lower
+density than their neighbors. These are considered outliers.
+See <a href="#id40"><span class="problematic" id="id41">:cite:`breunig2000lof`</span></a> for details.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_neighbors</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=20</em><em>)</em>) – Number of neighbors to use by default for <cite>kneighbors</cite> queries.
+If n_neighbors is larger than the number of samples provided,
+all samples will be used.</p></li>
+<li><p><strong>algorithm</strong> (<em>{'auto'</em><em>, </em><em>'ball_tree'</em><em>, </em><em>'kd_tree'</em><em>, </em><em>'brute'}</em><em>, </em><em>optional</em>) – <p>Algorithm used to compute the nearest neighbors:</p>
+<ul>
+<li><p>’ball_tree’ will use BallTree</p></li>
+<li><p>’kd_tree’ will use KDTree</p></li>
+<li><p>’brute’ will use a brute-force search.</p></li>
+<li><p>’auto’ will attempt to decide the most appropriate algorithm
+based on the values passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code> method.</p></li>
+</ul>
+<p>Note: fitting on sparse input will override the setting of
+this parameter, using brute force.</p>
+</p></li>
+<li><p><strong>leaf_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=30</em><em>)</em>) – Leaf size passed to <cite>BallTree</cite> or <cite>KDTree</cite>. This can
+affect the speed of the construction and query, as well as the memory
+required to store the tree. The optimal value depends on the
+nature of the problem.</p></li>
+<li><p><strong>metric</strong> (<em>string</em><em> or </em><em>callable</em><em>, </em><em>default 'minkowski'</em>) – <p>metric used for the distance computation. Any metric from scikit-learn
+or scipy.spatial.distance can be used.
+If ‘precomputed’, the training input X is expected to be a distance
+matrix.
+If metric is a callable function, it is called on each
+pair of instances (rows) and the resulting value recorded. The callable
+should take two arrays as input and return one value indicating the
+distance between them. This works for Scipy’s metrics, but is less
+efficient than passing the metric name as a string.
+Valid values for metric are:</p>
+<ul>
+<li><p>from scikit-learn: [‘cityblock’, ‘cosine’, ‘euclidean’, ‘l1’, ‘l2’,
+‘manhattan’]</p></li>
+<li><p>from scipy.spatial.distance: [‘braycurtis’, ‘canberra’, ‘chebyshev’,
+‘correlation’, ‘dice’, ‘hamming’, ‘jaccard’, ‘kulsinski’,
+‘mahalanobis’, ‘matching’, ‘minkowski’, ‘rogerstanimoto’,
+‘russellrao’, ‘seuclidean’, ‘sokalmichener’, ‘sokalsneath’,
+‘sqeuclidean’, ‘yule’]</p></li>
+</ul>
+<p>See the documentation for scipy.spatial.distance for details on these
+metrics:
+<a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/spatial.distance.html">http://docs.scipy.org/doc/scipy/reference/spatial.distance.html</a></p>
+</p></li>
+<li><p><strong>p</strong> (<em>integer</em><em>, </em><em>optional</em><em> (</em><em>default = 2</em><em>)</em>) – Parameter for the Minkowski metric from
+sklearn.metrics.pairwise.pairwise_distances. When p = 1, this is
+equivalent to using manhattan_distance (l1), and euclidean_distance
+(l2) for p = 2. For arbitrary p, minkowski_distance (l_p) is used.
+See <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.pairwise_distances">http://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.pairwise_distances</a></p></li>
+<li><p><strong>metric_params</strong> (<em>dict</em><em>, </em><em>optional</em><em> (</em><em>default = None</em><em>)</em>) – Additional keyword arguments for the metric function.</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e. the proportion
+of outliers in the data set. When fitting this is used to define the
+threshold on the decision function.</p></li>
+<li><p><strong>n_jobs</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default = 1</em><em>)</em>) – The number of parallel jobs to run for neighbors search.
+If <code class="docutils literal notranslate"><span class="pre">-1</span></code>, then the number of jobs is set to the number of CPU cores.
+Affects only kneighbors and kneighbors_graph methods.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id144"><span class="problematic" id="id145">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id146"><span class="problematic" id="id147">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id148"><span class="problematic" id="id149">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodmogaal">
+<span id="id42"></span><h2>tods.detection_algorithm.PyodMoGaal<a class="headerlink" href="#tods-detection-algorithm-pyodmogaal" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodMoGaal.Mo_GaalPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodMoGaal.</span></span><span class="sig-name descname"><span class="pre">Mo_GaalPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodMoGaal.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodMoGaal.html#Mo_GaalPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodMoGaal.Mo_GaalPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Multi-Objective Generative Adversarial Active Learning.</dt><dd><p>MO_GAAL directly generates informative potential outliers to assist the
+classifier in describing a boundary that can separate outliers from normal
+data effectively. Moreover, to prevent the generator from falling into the
+mode collapsing problem, the network structure of SO-GAAL is expanded from
+a single generator (SO-GAAL) to multiple generators with different
+objectives (MO-GAAL) to generate a reasonable reference distribution for
+the whole dataset.
+Read more in the <a href="#id43"><span class="problematic" id="id44">:cite:`liu2019generative`</span></a>.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e.
+the proportion of outliers in the data set. Used when fitting to
+define the threshold on the decision function.</p></li>
+<li><p><strong>k</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=10</em><em>)</em>) – The number of sub generators.</p></li>
+<li><p><strong>stop_epochs</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=20</em><em>)</em>) – The number of epochs of training.</p></li>
+<li><p><strong>lr_d</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.01</em><em>)</em>) – The learn rate of the discriminator.</p></li>
+<li><p><strong>lr_g</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.0001</em><em>)</em>) – The learn rate of the generator.</p></li>
+<li><p><strong>decay</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=1e-6</em><em>)</em>) – The decay parameter for SGD.</p></li>
+<li><p><strong>momentum</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.9</em><em>)</em>) – The momentum parameter for SGD.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id150"><span class="problematic" id="id151">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is fitted.</p>
+</dd>
+<dt><a href="#id152"><span class="problematic" id="id153">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id154"><span class="problematic" id="id155">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodocsvm">
+<span id="id45"></span><h2>tods.detection_algorithm.PyodOCSVM<a class="headerlink" href="#tods-detection-algorithm-pyodocsvm" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodOCSVM.OCSVMPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodOCSVM.</span></span><span class="sig-name descname"><span class="pre">OCSVMPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodOCSVM.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodOCSVM.html#OCSVMPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodOCSVM.OCSVMPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Wrapper of scikit-learn one-class SVM Class with more functionalities.</dt><dd><p>Unsupervised Outlier Detection.
+Estimate the support of a high-dimensional distribution.
+The implementation is based on libsvm.
+See <a class="reference external" href="http://scikit-learn.org/stable/modules/svm.html#svm-outlier-detection">http://scikit-learn.org/stable/modules/svm.html#svm-outlier-detection</a>
+and <a href="#id46"><span class="problematic" id="id47">:cite:`scholkopf2001estimating`</span></a>.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kernel</strong> (<em>string</em><em>, </em><em>optional</em><em> (</em><em>default='rbf'</em><em>)</em>) – Specifies the kernel type to be used in the algorithm.
+It must be one of ‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’ or
+a callable.
+If none is given, ‘rbf’ will be used. If a callable is given it is
+used to precompute the kernel matrix.</p></li>
+<li><p><strong>nu</strong> (<em>float</em><em>, </em><em>optional</em>) – An upper bound on the fraction of training
+errors and a lower bound of the fraction of support
+vectors. Should be in the interval (0, 1]. By default 0.5
+will be taken.</p></li>
+<li><p><strong>degree</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=3</em><em>)</em>) – Degree of the polynomial kernel function (‘poly’).
+Ignored by all other kernels.</p></li>
+<li><p><strong>gamma</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default='auto'</em><em>)</em>) – Kernel coefficient for ‘rbf’, ‘poly’ and ‘sigmoid’.
+If gamma is ‘auto’ then 1/n_features will be used instead.</p></li>
+<li><p><strong>coef0</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.0</em><em>)</em>) – Independent term in kernel function.
+It is only significant in ‘poly’ and ‘sigmoid’.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerance for stopping criterion.</p></li>
+<li><p><strong>shrinking</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to use the shrinking heuristic.</p></li>
+<li><p><strong>cache_size</strong> (<em>float</em><em>, </em><em>optional</em>) – Specify the size of the kernel cache (in MB).</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>default: False</em>) – Enable verbose output. Note that this setting takes advantage of a
+per-process runtime setting in libsvm that, if enabled, may not work
+properly in a multithreaded context.</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=-1</em><em>)</em>) – Hard limit on iterations within solver, or -1 for no limit.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id156"><span class="problematic" id="id157">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is fitted.</p>
+</dd>
+<dt><a href="#id158"><span class="problematic" id="id159">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id160"><span class="problematic" id="id161">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodsod">
+<span id="id48"></span><h2>tods.detection_algorithm.PyodSOD<a class="headerlink" href="#tods-detection-algorithm-pyodsod" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodSOD.SODPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodSOD.</span></span><span class="sig-name descname"><span class="pre">SODPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodSOD.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodSOD.html#SODPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodSOD.SODPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Subspace outlier detection (SOD) schema aims to detect outlier in</dt><dd><p>varying subspaces of a high dimensional feature space. For each data
+object, SOD explores the axis-parallel subspace spanned by the data
+object’s neighbors and determines how much the object deviates from the
+neighbors in this subspace.
+See <a href="#id49"><span class="problematic" id="id50">:cite:`kriegel2009outlier`</span></a> for details.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_neighbors</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=20</em><em>)</em>) – Number of neighbors to use by default for k neighbors queries.</p></li>
+<li><p><strong>ref_set</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=10</em><em>)</em>) – specifies the number of shared nearest neighbors to create the
+reference set. Note that ref_set must be smaller than n_neighbors.</p></li>
+<li><p><strong>alpha</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>1.</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.8</em><em>)</em>) – specifies the lower limit for selecting subspace.
+0.8 is set as default as suggested in the original paper.</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e.
+the proportion of outliers in the data set. Used when fitting to
+define the threshold on the decision function.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id162"><span class="problematic" id="id163">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id164"><span class="problematic" id="id165">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id166"><span class="problematic" id="id167">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodsogaal">
+<span id="id51"></span><h2>tods.detection_algorithm.PyodSoGaal<a class="headerlink" href="#tods-detection-algorithm-pyodsogaal" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodSoGaal.So_GaalPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodSoGaal.</span></span><span class="sig-name descname"><span class="pre">So_GaalPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodSoGaal.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodSoGaal.html#So_GaalPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodSoGaal.So_GaalPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Single-Objective Generative Adversarial Active Learning.</dt><dd><p>SO-GAAL directly generates informative potential outliers to assist the
+classifier in describing a boundary that can separate outliers from normal
+data effectively. Moreover, to prevent the generator from falling into the
+mode collapsing problem, the network structure of SO-GAAL is expanded from
+a single generator (SO-GAAL) to multiple generators with different
+objectives (MO-GAAL) to generate a reasonable reference distribution for
+the whole dataset.
+Read more in the <a href="#id52"><span class="problematic" id="id53">:cite:`liu2019generative`</span></a>.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e.
+the proportion of outliers in the data set. Used when fitting to
+define the threshold on the decision function.</p></li>
+<li><p><strong>stop_epochs</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=20</em><em>)</em>) – The number of epochs of training.</p></li>
+<li><p><strong>lr_d</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.01</em><em>)</em>) – The learn rate of the discriminator.</p></li>
+<li><p><strong>lr_g</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.0001</em><em>)</em>) – The learn rate of the generator.</p></li>
+<li><p><strong>decay</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=1e-6</em><em>)</em>) – The decay parameter for SGD.</p></li>
+<li><p><strong>momentum</strong> (<em>float</em><em>, </em><em>optional</em><em> (</em><em>default=0.9</em><em>)</em>) – The momentum parameter for SGD.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id168"><span class="problematic" id="id169">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is fitted.</p>
+</dd>
+<dt><a href="#id170"><span class="problematic" id="id171">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id172"><span class="problematic" id="id173">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-pyodvae">
+<span id="id54"></span><h2>tods.detection_algorithm.PyodVAE<a class="headerlink" href="#tods-detection-algorithm-pyodvae" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.PyodVAE.VariationalAutoEncoderPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.PyodVAE.</span></span><span class="sig-name descname"><span class="pre">VariationalAutoEncoderPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.PyodVAE.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/PyodVAE.html#VariationalAutoEncoderPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.PyodVAE.VariationalAutoEncoderPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Auto Encoder (AE) is a type of neural networks for learning useful data</dt><dd><p>representations unsupervisedly. Similar to PCA, AE could be used to
+detect outlying objects in the data by calculating the reconstruction
+errors. See <a href="#id55"><span class="problematic" id="id56">:cite:`aggarwal2015outlier`</span></a> Chapter 3 for details.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hidden_neurons</strong> (<em>list</em><em>, </em><em>optional</em><em> (</em><em>default=</em><em>[</em><em>4</em><em>, </em><em>2</em><em>, </em><em>4</em><em>]</em><em>)</em>) – The number of neurons per hidden layers.</p></li>
+<li><p><strong>hidden_activation</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default='relu'</em><em>)</em>) – Activation function to use for hidden layers.
+All hidden layers are forced to use the same type of activation.
+See <a class="reference external" href="https://keras.io/activations/">https://keras.io/activations/</a></p></li>
+<li><p><strong>output_activation</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default='sigmoid'</em><em>)</em>) – Activation function to use for output layer.
+See <a class="reference external" href="https://keras.io/activations/">https://keras.io/activations/</a></p></li>
+<li><p><strong>loss</strong> (<em>str</em><em> or </em><em>obj</em><em>, </em><em>optional</em><em> (</em><em>default=keras.losses.mean_squared_error</em><em>)</em>) – String (name of objective function) or objective function.
+See <a class="reference external" href="https://keras.io/losses/">https://keras.io/losses/</a></p></li>
+<li><p><strong>optimizer</strong> (<em>str</em><em>, </em><em>optional</em><em> (</em><em>default='adam'</em><em>)</em>) – String (name of optimizer) or optimizer instance.
+See <a class="reference external" href="https://keras.io/optimizers/">https://keras.io/optimizers/</a></p></li>
+<li><p><strong>epochs</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=100</em><em>)</em>) – Number of epochs to train the model.</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=32</em><em>)</em>) – Number of samples per gradient update.</p></li>
+<li><p><strong>dropout_rate</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>1</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.2</em><em>)</em>) – The dropout to be used across all layers.</p></li>
+<li><p><strong>l2_regularizer</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>1</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The regularization strength of activity_regularizer
+applied on each layer. By default, l2 regularizer is used. See
+<a class="reference external" href="https://keras.io/regularizers/">https://keras.io/regularizers/</a></p></li>
+<li><p><strong>validation_size</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>1</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The percentage of data to be used for validation.</p></li>
+<li><p><strong>preprocessing</strong> (<em>bool</em><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – If True, apply standardization on the data.</p></li>
+<li><p><strong>verbose</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>default=1</em><em>)</em>) – Verbosity mode.
+- 0 = silent
+- 1 = progress bar
+- 2 = one line per epoch.
+For verbosity &gt;= 1, model summary may be printed.</p></li>
+<li><p><strong>random_state</strong> (<em>random_state: int</em><em>, </em><em>RandomState instance</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – (default=None)
+If int, random_state is the seed used by the random
+number generator; If RandomState instance, random_state is the random
+number generator; If None, the random number generator is the
+RandomState instance used by <cite>np.random</cite>.</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e.
+the proportion of outliers in the data set. When fitting this is used
+to define the threshold on the decision function.</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Attributes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt><a href="#id174"><span class="problematic" id="id175">encoding_dim_</span></a><span class="classifier">int</span></dt><dd><p class="sd-card-text">The number of neurons in the encoding layer.</p>
+</dd>
+<dt><a href="#id176"><span class="problematic" id="id177">compression_rate_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The ratio between the original feature and
+the number of neurons in the encoding layer.</p>
+</dd>
+<dt><a href="#id178"><span class="problematic" id="id179">model_</span></a><span class="classifier">Keras Object</span></dt><dd><p class="sd-card-text">The underlying AutoEncoder in Keras.</p>
+</dd>
+<dt><a href="#id180"><span class="problematic" id="id181">history_</span></a>: Keras Object</dt><dd><p class="sd-card-text">The AutoEncoder training history.</p>
+</dd>
+<dt><a href="#id182"><span class="problematic" id="id183">decision_scores_</span></a><span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p class="sd-card-text">The outlier scores of the training data.
+The higher, the more abnormal. Outliers tend to have higher
+scores. This value is available once the detector is
+fitted.</p>
+</dd>
+<dt><a href="#id184"><span class="problematic" id="id185">threshold_</span></a><span class="classifier">float</span></dt><dd><p class="sd-card-text">The threshold is based on <code class="docutils literal notranslate"><span class="pre">contamination</span></code>. It is the
+<code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">*</span> <span class="pre">contamination</span></code> most abnormal samples in
+<code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>. The threshold is calculated for generating
+binary outlier labels.</p>
+</dd>
+<dt><a href="#id186"><span class="problematic" id="id187">labels_</span></a><span class="classifier">int, either 0 or 1</span></dt><dd><p class="sd-card-text">The binary labels of the training data. 0 stands for inliers
+and 1 for outliers/anomalies. It is generated by applying
+<code class="docutils literal notranslate"><span class="pre">threshold_</span></code> on <code class="docutils literal notranslate"><span class="pre">decision_scores_</span></code>.</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-systemwisedetection">
+<span id="id57"></span><h2>tods.detection_algorithm.SystemWiseDetection<a class="headerlink" href="#tods-detection-algorithm-systemwisedetection" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.SystemWiseDetection.SystemWiseDetectionPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.SystemWiseDetection.</span></span><span class="sig-name descname"><span class="pre">SystemWiseDetectionPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.SystemWiseDetection.Hyperparams</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/SystemWiseDetection.html#SystemWiseDetectionPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.SystemWiseDetection.SystemWiseDetectionPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><p>Primitive to find abs_energy of time series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>window_size</strong> (<em>int</em><em>(</em><em>default=10</em><em>)</em>) – Window Size for decomposition</p></li>
+<li><p><strong>method_type</strong> (<em>str</em><em> (</em><em>'max'</em><em>, </em><em>'avg'</em><em>, </em><em>'sliding_window_sum'</em><em>,</em><em>'majority_voting_sliding_window_sum'</em><em>,</em><em>'majority_voting_sliding_window_max'</em><em>)</em>) – The type of method used to find anomalous system</p></li>
+<li><p><strong>contamination</strong> (<em>float in</em><em> (</em><em>0.</em><em>, </em><em>0.5</em><em>)</em><em>, </em><em>optional</em><em> (</em><em>default=0.1</em><em>)</em>) – The amount of contamination of the data set, i.e. the proportion of outliers in the data set.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-telemanom">
+<span id="id58"></span><h2>tods.detection_algorithm.Telemanom<a class="headerlink" href="#tods-detection-algorithm-telemanom" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.Telemanom.TelemanomPrimitive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.Telemanom.</span></span><span class="sig-name descname"><span class="pre">TelemanomPrimitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tods.detection_algorithm.Telemanom.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/Telemanom.html#TelemanomPrimitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.Telemanom.TelemanomPrimitive" title="Permalink to this definition">#</a></dt>
+<dd><p>A primitive that uses telmanom for outlier detection</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>smoothing_perc</strong> (<em>float</em><em> (</em><em>default=0.05</em><em>)</em>) – determines window size used in EWMA smoothing (percentage of total values for channel)</p></li>
+<li><p><strong>window_size</strong> (<em>int</em><em>(</em><em>default=100</em><em>)</em>) – number of trailing batches to use in error calculation</p></li>
+<li><p><strong>error_buffer</strong> (<em>int</em><em>(</em><em>default=50</em><em>)</em>) – number of values surrounding an error that are brought into the sequence (promotes grouping on nearby sequences</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em><em>(</em><em>default=70</em><em>)</em>) – Batch size while predicting</p></li>
+</ul>
+</dd>
+</dl>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+LSTM Model Parameters<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt>dropout :float(default=0.3)</dt><dd><p class="sd-card-text">Dropout rate</p>
+</dd>
+<dt>validation_split :float(default=0.2)</dt><dd><p class="sd-card-text">Validation split</p>
+</dd>
+<dt>optimizer :(default=’Adam’)</dt><dd><p class="sd-card-text">Optimizer</p>
+</dd>
+<dt>lstm_batch_size :int (default=64)</dt><dd><p class="sd-card-text">lstm model training batch size</p>
+</dd>
+<dt>loss_metric :(default=’mean_squared_error’)</dt><dd><p class="sd-card-text">loss function</p>
+</dd>
+<dt>layers = List(default=[10,10])</dt><dd><p class="sd-card-text">No of units for the 2 lstm layers</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Training Parameters<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt>epochs :int(default=1)</dt><dd><p class="sd-card-text">Epoch</p>
+</dd>
+<dt>patience  :int(default=10)</dt><dd><p class="sd-card-text">Number of consequetive training iterations to allow without decreasing the val_loss by at least min_delta</p>
+</dd>
+<dt>min_delta :float(default=0.0003)</dt><dd><p class="sd-card-text">Number of consequetive training iterations to allow without decreasing the val_loss by at least min_delta</p>
+</dd>
+<dt>l_s :int(default=100)</dt><dd><p class="sd-card-text">num previous timesteps provided to model to predict future values</p>
+</dd>
+<dt>n_predictions :int(default=10)</dt><dd><p class="sd-card-text">number of steps ahead to predict</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Error thresholding parameters<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt>p :float(default=0.05)</dt><dd><p class="sd-card-text">minimum percent decrease between max errors in anomalous sequences (used for pruning)</p>
+</dd>
+</dl>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Contamination<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<dl class="simple">
+<dt>contamination<span class="classifier">float in (0., 0.5), optional (default=0.1)</span></dt><dd><p class="sd-card-text">the amount of contamination of the data set, i.e.the proportion of outliers in the data set. Used when fitting to define the threshold on the decision function</p>
+</dd>
+</dl>
+</div>
+</details></dd></dl>
+
+</section>
+<section id="tods-detection-algorithm-uodbaseprimitive">
+<span id="id59"></span><h2>tods.detection_algorithm.UODBasePrimitive<a class="headerlink" href="#tods-detection-algorithm-uodbaseprimitive" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tods.detection_algorithm.UODBasePrimitive.UnsupervisedOutlierDetectorBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tods.detection_algorithm.UODBasePrimitive.</span></span><span class="sig-name descname"><span class="pre">UnsupervisedOutlierDetectorBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">d3m.primitive_interfaces.base.Hyperparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docker_containers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">d3m.primitive_interfaces.base.DockerContainer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tods/detection_algorithm/UODBasePrimitive.html#UnsupervisedOutlierDetectorBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tods.detection_algorithm.UODBasePrimitive.UnsupervisedOutlierDetectorBase" title="Permalink to this definition">#</a></dt>
+<dd><p>A base class for primitives which have to be fitted before they can start
+producing (useful) outputs from inputs, but they are fitted only on input data.</p>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="tods.reinforcement.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">tods.reinforcement</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="tods.feature_analysis.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">tods.feature_analysis</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, DataLab@Rice University
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">tods.detection_algorithm</a><ul>
+<li><a class="reference internal" href="#tods-detection-algorithm-autoregodetect">tods.detection_algorithm.AutoRegODetect</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-dagmm">tods.detection_algorithm.DAGMM</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-deeplog">tods.detection_algorithm.DeepLog</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-ensemble">tods.detection_algorithm.Ensemble</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-kdiscordodetect">tods.detection_algorithm.KDiscordODetect</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-lstmodetect">tods.detection_algorithm.LSTMODetect</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-matrixprofile">tods.detection_algorithm.MatrixProfile</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pcaodetect">tods.detection_algorithm.PCAODetect</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodabod">tods.detection_algorithm.PyodABOD</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodae">tods.detection_algorithm.PyodAE</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodcblof">tods.detection_algorithm.PyodCBLOF</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodcof">tods.detection_algorithm.PyodCOF</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodhbos">tods.detection_algorithm.PyodHBOS</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodisolationforest">tods.detection_algorithm.PyodIsolationForest</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodknn">tods.detection_algorithm.PyodKNN</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodloda">tods.detection_algorithm.PyodLODA</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodlof">tods.detection_algorithm.PyodLOF</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodmogaal">tods.detection_algorithm.PyodMoGaal</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodocsvm">tods.detection_algorithm.PyodOCSVM</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodsod">tods.detection_algorithm.PyodSOD</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodsogaal">tods.detection_algorithm.PyodSoGaal</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-pyodvae">tods.detection_algorithm.PyodVAE</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-systemwisedetection">tods.detection_algorithm.SystemWiseDetection</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-telemanom">tods.detection_algorithm.Telemanom</a></li>
+<li><a class="reference internal" href="#tods-detection-algorithm-uodbaseprimitive">tods.detection_algorithm.UODBasePrimitive</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    </body>
+</html>

@@ -1,0 +1,416 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Python Path Cheat Sheet" href="PythonPathCheatSheet.html" /><link rel="prev" title="Overview" href="overview.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.06.21"/>
+        <title>Getting Started - TODS 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">TODS 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/tods_menu_logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">TODS 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PythonPathCheatSheet.html">Python Path Cheat Sheet</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tods.data_processing.html">tods.data_processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tods.timeseries_processing.html">tods.timeseries_processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tods.feature_analysis.html">tods.feature_analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tods.detection_algorithm.html">tods.detection_algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tods.reinforcement.html">tods.reinforcement</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">#</a></h1>
+<p>In this document, we provide some toy examples for getting started. All
+the examples in this document and even more examples are available in
+<a class="reference external" href="https://github.com/datamllab/tods/tree/master/examples">examples</a>.</p>
+<section id="outlier-detection-with-autoencoder-on-nab-dataset">
+<h2>Outlier Detection with Autoencoder on NAB Dataset<a class="headerlink" href="#outlier-detection-with-autoencoder-on-nab-dataset" title="Permalink to this headline">#</a></h2>
+<p>To perform the point-wise outlier detection on NAB dataset. We provide an example to construct
+such pipeline description:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">d3m</span> <span class="kn">import</span> <span class="n">index</span>
+<span class="kn">from</span> <span class="nn">d3m.metadata.base</span> <span class="kn">import</span> <span class="n">ArgumentType</span>
+<span class="kn">from</span> <span class="nn">d3m.metadata.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">PrimitiveStep</span>
+
+<span class="c1"># Creating pipeline</span>
+<span class="n">pipeline_description</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">()</span>
+<span class="n">pipeline_description</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;inputs&#39;</span><span class="p">)</span>
+
+<span class="c1"># Step 0: dataset_to_dataframe</span>
+<span class="n">step_0</span> <span class="o">=</span> <span class="n">PrimitiveStep</span><span class="p">(</span><span class="n">primitive</span><span class="o">=</span><span class="n">index</span><span class="o">.</span><span class="n">get_primitive</span><span class="p">(</span><span class="s1">&#39;d3m.primitives.data_transformation.dataset_to_dataframe.Common&#39;</span><span class="p">))</span>
+<span class="n">step_0</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;inputs&#39;</span><span class="p">,</span> <span class="n">argument_type</span><span class="o">=</span><span class="n">ArgumentType</span><span class="o">.</span><span class="n">CONTAINER</span><span class="p">,</span> <span class="n">data_reference</span><span class="o">=</span><span class="s1">&#39;inputs.0&#39;</span><span class="p">)</span>
+<span class="n">step_0</span><span class="o">.</span><span class="n">add_output</span><span class="p">(</span><span class="s1">&#39;produce&#39;</span><span class="p">)</span>
+<span class="n">pipeline_description</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">step_0</span><span class="p">)</span>
+
+<span class="c1"># Step 1: column_parser</span>
+<span class="n">step_1</span> <span class="o">=</span> <span class="n">PrimitiveStep</span><span class="p">(</span><span class="n">primitive</span><span class="o">=</span><span class="n">index</span><span class="o">.</span><span class="n">get_primitive</span><span class="p">(</span><span class="s1">&#39;d3m.primitives.data_transformation.column_parser.Common&#39;</span><span class="p">))</span>
+<span class="n">step_1</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;inputs&#39;</span><span class="p">,</span> <span class="n">argument_type</span><span class="o">=</span><span class="n">ArgumentType</span><span class="o">.</span><span class="n">CONTAINER</span><span class="p">,</span> <span class="n">data_reference</span><span class="o">=</span><span class="s1">&#39;steps.0.produce&#39;</span><span class="p">)</span>
+<span class="n">step_1</span><span class="o">.</span><span class="n">add_output</span><span class="p">(</span><span class="s1">&#39;produce&#39;</span><span class="p">)</span>
+<span class="n">pipeline_description</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">step_1</span><span class="p">)</span>
+
+<span class="c1"># Step 2: extract_columns_by_semantic_types(attributes)</span>
+<span class="n">step_2</span> <span class="o">=</span> <span class="n">PrimitiveStep</span><span class="p">(</span><span class="n">primitive</span><span class="o">=</span><span class="n">index</span><span class="o">.</span><span class="n">get_primitive</span><span class="p">(</span><span class="s1">&#39;d3m.primitives.data_transformation.extract_columns_by_semantic_types.Common&#39;</span><span class="p">))</span>
+<span class="n">step_2</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;inputs&#39;</span><span class="p">,</span> <span class="n">argument_type</span><span class="o">=</span><span class="n">ArgumentType</span><span class="o">.</span><span class="n">CONTAINER</span><span class="p">,</span> <span class="n">data_reference</span><span class="o">=</span><span class="s1">&#39;steps.1.produce&#39;</span><span class="p">)</span>
+<span class="n">step_2</span><span class="o">.</span><span class="n">add_output</span><span class="p">(</span><span class="s1">&#39;produce&#39;</span><span class="p">)</span>
+<span class="n">step_2</span><span class="o">.</span><span class="n">add_hyperparameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;semantic_types&#39;</span><span class="p">,</span> <span class="n">argument_type</span><span class="o">=</span><span class="n">ArgumentType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">,</span>
+                        <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://metadata.datadrivendiscovery.org/types/Attribute&#39;</span><span class="p">])</span>
+<span class="n">pipeline_description</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">step_2</span><span class="p">)</span>
+
+<span class="c1"># Step 3: extract_columns_by_semantic_types(targets)</span>
+<span class="n">step_3</span> <span class="o">=</span> <span class="n">PrimitiveStep</span><span class="p">(</span><span class="n">primitive</span><span class="o">=</span><span class="n">index</span><span class="o">.</span><span class="n">get_primitive</span><span class="p">(</span><span class="s1">&#39;d3m.primitives.data_transformation.extract_columns_by_semantic_types.Common&#39;</span><span class="p">))</span>
+<span class="n">step_3</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;inputs&#39;</span><span class="p">,</span> <span class="n">argument_type</span><span class="o">=</span><span class="n">ArgumentType</span><span class="o">.</span><span class="n">CONTAINER</span><span class="p">,</span> <span class="n">data_reference</span><span class="o">=</span><span class="s1">&#39;steps.0.produce&#39;</span><span class="p">)</span>
+<span class="n">step_3</span><span class="o">.</span><span class="n">add_output</span><span class="p">(</span><span class="s1">&#39;produce&#39;</span><span class="p">)</span>
+<span class="n">step_3</span><span class="o">.</span><span class="n">add_hyperparameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;semantic_types&#39;</span><span class="p">,</span> <span class="n">argument_type</span><span class="o">=</span><span class="n">ArgumentType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">,</span>
+                            <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://metadata.datadrivendiscovery.org/types/TrueTarget&#39;</span><span class="p">])</span>
+<span class="n">pipeline_description</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">step_3</span><span class="p">)</span>
+
+<span class="n">attributes</span> <span class="o">=</span> <span class="s1">&#39;steps.2.produce&#39;</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="s1">&#39;steps.3.produce&#39;</span>
+
+<span class="c1"># Step 4: processing</span>
+<span class="n">step_4</span> <span class="o">=</span> <span class="n">PrimitiveStep</span><span class="p">(</span><span class="n">primitive</span><span class="o">=</span><span class="n">index</span><span class="o">.</span><span class="n">get_primitive</span><span class="p">(</span><span class="s1">&#39;d3m.primitives.tods.timeseries_processing.transformation.axiswise_scaler&#39;</span><span class="p">))</span>
+<span class="n">step_4</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;inputs&#39;</span><span class="p">,</span> <span class="n">argument_type</span><span class="o">=</span><span class="n">ArgumentType</span><span class="o">.</span><span class="n">CONTAINER</span><span class="p">,</span> <span class="n">data_reference</span><span class="o">=</span><span class="n">attributes</span><span class="p">)</span>
+<span class="n">step_4</span><span class="o">.</span><span class="n">add_output</span><span class="p">(</span><span class="s1">&#39;produce&#39;</span><span class="p">)</span>
+<span class="n">pipeline_description</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">step_4</span><span class="p">)</span>
+
+<span class="c1"># Step 5: algorithm</span>
+<span class="n">step_5</span> <span class="o">=</span> <span class="n">PrimitiveStep</span><span class="p">(</span><span class="n">primitive</span><span class="o">=</span><span class="n">index</span><span class="o">.</span><span class="n">get_primitive</span><span class="p">(</span><span class="s1">&#39;d3m.primitives.tods.detection_algorithm.pyod_ae&#39;</span><span class="p">))</span>
+<span class="n">step_5</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;inputs&#39;</span><span class="p">,</span> <span class="n">argument_type</span><span class="o">=</span><span class="n">ArgumentType</span><span class="o">.</span><span class="n">CONTAINER</span><span class="p">,</span> <span class="n">data_reference</span><span class="o">=</span><span class="s1">&#39;steps.4.produce&#39;</span><span class="p">)</span>
+<span class="n">step_5</span><span class="o">.</span><span class="n">add_output</span><span class="p">(</span><span class="s1">&#39;produce&#39;</span><span class="p">)</span>
+<span class="n">pipeline_description</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">step_5</span><span class="p">)</span>
+
+ <span class="c1"># Step 6: Predictions</span>
+<span class="n">step_6</span> <span class="o">=</span> <span class="n">PrimitiveStep</span><span class="p">(</span><span class="n">primitive</span><span class="o">=</span><span class="n">index</span><span class="o">.</span><span class="n">get_primitive</span><span class="p">(</span><span class="s1">&#39;d3m.primitives.data_transformation.construct_predictions.Common&#39;</span><span class="p">))</span>
+<span class="n">step_6</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;inputs&#39;</span><span class="p">,</span> <span class="n">argument_type</span><span class="o">=</span><span class="n">ArgumentType</span><span class="o">.</span><span class="n">CONTAINER</span><span class="p">,</span> <span class="n">data_reference</span><span class="o">=</span><span class="s1">&#39;steps.5.produce&#39;</span><span class="p">)</span>
+<span class="n">step_6</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;reference&#39;</span><span class="p">,</span> <span class="n">argument_type</span><span class="o">=</span><span class="n">ArgumentType</span><span class="o">.</span><span class="n">CONTAINER</span><span class="p">,</span> <span class="n">data_reference</span><span class="o">=</span><span class="s1">&#39;steps.1.produce&#39;</span><span class="p">)</span>
+<span class="n">step_6</span><span class="o">.</span><span class="n">add_output</span><span class="p">(</span><span class="s1">&#39;produce&#39;</span><span class="p">)</span>
+<span class="n">pipeline_description</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">step_6</span><span class="p">)</span>
+
+<span class="c1"># Final Output</span>
+<span class="n">pipeline_description</span><span class="o">.</span><span class="n">add_output</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;output predictions&#39;</span><span class="p">,</span> <span class="n">data_reference</span><span class="o">=</span><span class="s1">&#39;steps.6.produce&#39;</span><span class="p">)</span>
+
+<span class="c1"># Output to json</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pipeline_description</span><span class="o">.</span><span class="n">to_json</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;example_pipeline.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that, in order to call each primitive during pipeline construction, one may find the index (python_path) of primitives available in
+<a class="reference external" href="https://github.com/datamllab/tods/tree/master/tods/entry_points.ini">entry_points.ini</a>.</p>
+<p>The output description json file (example_pipeline.json) should look like something as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e39bf406-06cf-4c76-88f0-8c8b4447e311&quot;</span><span class="p">,</span>
+<span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="s2">&quot;https://metadata.datadrivendiscovery.org/schemas/v0/pipeline.json&quot;</span><span class="p">,</span>
+<span class="s2">&quot;created&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-09-15T07:26:48.365447Z&quot;</span><span class="p">,</span>
+<span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;inputs&quot;</span><span class="p">}],</span>
+<span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;steps.6.produce&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;output predictions&quot;</span><span class="p">}],</span>
+<span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;PRIMITIVE&quot;</span><span class="p">,</span> <span class="s2">&quot;primitive&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;4b42ce1e-9b98-4a25-b68e-fad13311eb65&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.3.0&quot;</span><span class="p">,</span> <span class="s2">&quot;python_path&quot;</span><span class="p">:</span> <span class="s2">&quot;d3m.primitives.data_transformation.dataset_to_dataframe.Common&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Extract a DataFrame from a Dataset&quot;</span><span class="p">,</span> <span class="s2">&quot;digest&quot;</span><span class="p">:</span> <span class="s2">&quot;a7f5a8f8b276f474c3b40b025d157541de898e4e02555cd8ef76fdeecfbed256&quot;</span><span class="p">},</span> <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CONTAINER&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;inputs.0&quot;</span><span class="p">}},</span> <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;produce&quot;</span><span class="p">}]},</span>
+    <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;PRIMITIVE&quot;</span><span class="p">,</span> <span class="s2">&quot;primitive&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d510cb7a-1782-4f51-b44c-58f0236e47c7&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.6.0&quot;</span><span class="p">,</span> <span class="s2">&quot;python_path&quot;</span><span class="p">:</span> <span class="s2">&quot;d3m.primitives.data_transformation.column_parser.Common&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Parses strings into their types&quot;</span><span class="p">,</span> <span class="s2">&quot;digest&quot;</span><span class="p">:</span> <span class="s2">&quot;eccfd70ed359901a625dbde6de40d6bbb4e69d9796ee0ca3a302fd95195451ed&quot;</span><span class="p">},</span> <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CONTAINER&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;steps.0.produce&quot;</span><span class="p">}},</span> <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;produce&quot;</span><span class="p">}]},</span>
+    <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;PRIMITIVE&quot;</span><span class="p">,</span> <span class="s2">&quot;primitive&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;4503a4c6-42f7-45a1-a1d4-ed69699cf5e1&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.4.0&quot;</span><span class="p">,</span> <span class="s2">&quot;python_path&quot;</span><span class="p">:</span> <span class="s2">&quot;d3m.primitives.data_transformation.extract_columns_by_semantic_types.Common&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Extracts columns by semantic type&quot;</span><span class="p">,</span> <span class="s2">&quot;digest&quot;</span><span class="p">:</span> <span class="s2">&quot;9f0303c354df6cec4df7bda0ebb46fb4f101c36ad9a4d1143b9b9c88004629aa&quot;</span><span class="p">},</span> <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CONTAINER&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;steps.1.produce&quot;</span><span class="p">}},</span> <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;produce&quot;</span><span class="p">}],</span> <span class="s2">&quot;hyperparams&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;semantic_types&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;VALUE&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;https://metadata.datadrivendiscovery.org/types/Attribute&quot;</span><span class="p">]}}},</span>
+    <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;PRIMITIVE&quot;</span><span class="p">,</span> <span class="s2">&quot;primitive&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;4503a4c6-42f7-45a1-a1d4-ed69699cf5e1&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.4.0&quot;</span><span class="p">,</span> <span class="s2">&quot;python_path&quot;</span><span class="p">:</span> <span class="s2">&quot;d3m.primitives.data_transformation.extract_columns_by_semantic_types.Common&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Extracts columns by semantic type&quot;</span><span class="p">,</span> <span class="s2">&quot;digest&quot;</span><span class="p">:</span> <span class="s2">&quot;9f0303c354df6cec4df7bda0ebb46fb4f101c36ad9a4d1143b9b9c88004629aa&quot;</span><span class="p">},</span> <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CONTAINER&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;steps.0.produce&quot;</span><span class="p">}},</span> <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;produce&quot;</span><span class="p">}],</span> <span class="s2">&quot;hyperparams&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;semantic_types&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;VALUE&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;https://metadata.datadrivendiscovery.org/types/TrueTarget&quot;</span><span class="p">]}}},</span>
+    <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;PRIMITIVE&quot;</span><span class="p">,</span> <span class="s2">&quot;primitive&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;642de2e7-5590-3cab-9266-2a53c326c461&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span> <span class="s2">&quot;python_path&quot;</span><span class="p">:</span> <span class="s2">&quot;d3m.primitives.tods.timeseries_processing.transformation.axiswise_scaler&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Axis_wise_scale&quot;</span><span class="p">},</span> <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CONTAINER&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;steps.2.produce&quot;</span><span class="p">}},</span> <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;produce&quot;</span><span class="p">}]},</span>
+    <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;PRIMITIVE&quot;</span><span class="p">,</span> <span class="s2">&quot;primitive&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;67e7fcdf-d645-3417-9aa4-85cd369487d9&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span> <span class="s2">&quot;python_path&quot;</span><span class="p">:</span> <span class="s2">&quot;d3m.primitives.tods.detection_algorithm.pyod_ae&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;TODS.anomaly_detection_primitives.AutoEncoder&quot;</span><span class="p">},</span> <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CONTAINER&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;steps.4.produce&quot;</span><span class="p">}},</span> <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;produce&quot;</span><span class="p">}]},</span>
+    <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;PRIMITIVE&quot;</span><span class="p">,</span> <span class="s2">&quot;primitive&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8d38b340-f83f-4877-baaa-162f8e551736&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.3.0&quot;</span><span class="p">,</span> <span class="s2">&quot;python_path&quot;</span><span class="p">:</span> <span class="s2">&quot;d3m.primitives.data_transformation.construct_predictions.Common&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Construct pipeline predictions output&quot;</span><span class="p">,</span> <span class="s2">&quot;digest&quot;</span><span class="p">:</span> <span class="s2">&quot;6de56912a3f84bbbcc0d1f7ffe646044209120e45bbb21a137236d00fed948e9&quot;</span><span class="p">},</span> <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CONTAINER&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;steps.5.produce&quot;</span><span class="p">},</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CONTAINER&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;steps.1.produce&quot;</span><span class="p">}},</span> <span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;produce&quot;</span><span class="p">}]}],</span>
+<span class="s2">&quot;digest&quot;</span><span class="p">:</span> <span class="s2">&quot;8c6a37e7ac9ef1b302810e56dffa43c3415826ab756ef6917d76dd8ee63d38fc&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>With the pre-built pipeline description file, we can then feed the NAB data (twitter_IBM) and specify the desired evaluation metric with the path of pipeline description file with
+<a class="reference external" href="https://github.com/datamllab/tods/tree/master/examples/run_pipeline.py">run_pipeline.py</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">examples</span><span class="o">/</span><span class="n">run_pipeline</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">pipeline_path</span> <span class="n">example_pipeline</span><span class="o">.</span><span class="n">json</span> <span class="o">--</span><span class="n">table_path</span> <span class="n">datasets</span><span class="o">/</span><span class="n">NAB</span><span class="o">/</span><span class="n">realTweets</span><span class="o">/</span><span class="n">labeled_Twitter_volume_IBM</span><span class="o">.</span><span class="n">csv</span> <span class="o">--</span><span class="n">metric</span> <span class="n">F1_MACRO</span> <span class="o">--</span><span class="n">target_index</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="PythonPathCheatSheet.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Python Path Cheat Sheet</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="overview.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Overview</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, DataLab@Rice University
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#outlier-detection-with-autoencoder-on-nab-dataset">Outlier Detection with Autoencoder on NAB Dataset</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    </body>
+</html>
